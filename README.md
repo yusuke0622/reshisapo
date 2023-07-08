@@ -1,24 +1,37 @@
-# README
+# レシサポ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+病気に打ち勝つ食事をサポートするためのコミュニティサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+以前私は２年程祖父の介護をしておりました。脳血管性認知症を患っていたため、できるだけ脳に負担をかけないよう日々気をつけておりました。
+中でも食事に関しては血圧を上げないよう塩分に気をつけ、カリウムをできるだけ多く摂取できるようなレシピを考えておりました。
+しかし毎回同じ料理では飽きてしまうし、摂取できる栄養素にも偏りが出てきてしまいます。
+そこで同じ分類の病気を持った方とレシピや食べ物を共有したり、その投稿があれば料理の手助けとなり便利だと考えました。
+また、現病がない人でも病気の予防のひとつとして利用することができると考え、このテーマにしました。
 
-* Ruby version
 
-* System dependencies
+### ターゲットユーザ
+- 病気によって食事を気をつけなければならない人
+- 病気を予防するために食事を気をつけている人
+- 上記２つどちらか一つでも該当する人に料理をする人
 
-* Configuration
+### 主な利用シーン
+- 自分が知りたい病気に関するレシピを検索する時
+- 自分が作った料理のレシピを投稿する時
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
+## 使用素材
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 実務機能リスト
+https://docs.google.com/spreadsheets/d/1zbPpru5VfEllQ03QUnqHeDMC5h_J8tlnAoykMJCFvrU/edit?usp=sharing

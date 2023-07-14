@@ -4,12 +4,16 @@
         
         <p>
             <% if @user.user_icon.present? %>
-                <%= image_tag @user.user_icon %>
+                <%= image_tag @user.user_icon.variant(resize: "100x100") %>
             <% else %>
-                <%= image_tag 'no_image.jpg' %>
+                <%= image_tag @user.no_image.variant(resize: "100x100") %>
             <% end %>
             <%= @user.name %>
         </p>
         <p><%= @user.email %></p>
+        
+        <p>
+            <%= link_to 'プロフィールを編集する', users_information_edit_path %>
+        </p>
     </div>
 </div>

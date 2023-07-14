@@ -1,0 +1,15 @@
+<div>
+    <div>
+        <h1>マイページ</h1>
+        
+        <p>
+            <% if @user.user_icon.present? %>
+                <%= image_tag @user.user_icon %>
+            <% else %>
+                <%= image_tag 'no_image.jpg' %>
+            <% end %>
+            <%= @user.name %>
+        </p>
+        <p><%= @user.email %></p>
+    </div>
+</div>

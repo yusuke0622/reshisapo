@@ -7,7 +7,7 @@
             <% if @user.user_icon.present? %>
                 <%= image_tag @user.user_icon.variant(resize: "100x100") %>
             <% else %>
-                <%= image_tag @user.no_image.variant(resize: "100x100") %>
+                <%= image_tag no_image.variant(resize: "100x100") %>
             <% end %>
             <%= f.label :user_icon, 'アイコン変更' %>
             <%= f.file_field :user_icon %>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  #トップページ
+  root to: 'public/homes#top'
   scope module: :public do
     #ユーザー
     get   'users/my_page'           => 'users#show', as: 'my_page'

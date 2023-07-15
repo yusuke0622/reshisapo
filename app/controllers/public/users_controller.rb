@@ -11,6 +11,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       redirect_to my_page_path
+      flash[:success] = "更新しました"
     else
       render :edit
     end

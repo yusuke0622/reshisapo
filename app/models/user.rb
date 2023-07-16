@@ -4,7 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  
   has_one_attached :user_icon
+  
+  has_many :recipes, dependent: :destroy
   
          
  def no_image

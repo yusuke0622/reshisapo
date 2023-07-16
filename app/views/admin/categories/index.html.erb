@@ -1,10 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <%= form_with model: @category do |f| %>
-            <%= f.label :category_name, 'カテゴリー名' %>
-            <%= f.text_field :category_name, class: 'form-control' %>
-            <%= f.submit '追加', class: "btn btn-secondary" %>
+            <%= form_with model: @category, url: admin_categories_path, method: :POST, local: true do |f| %>
+                <%= f.label :category_name, 'カテゴリー名' %>
+                <%= f.text_field :category_name, class: 'form-control' %>
+                <%= f.submit '追加', class: "btn btn-secondary" %>
+            <% end %>
         </div>
         
         <div class="col-md-8">
@@ -17,13 +18,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%= @categories.each do |category| %>
-                    <tr>
-                        <td><%= category.name %></td>
-                        <td><%= link_to '編集', edit_admin_category_path(category), class: 'btn btn-success' %></td>
-                        <td><%= link_to '削除', admin_categoy_path(category), method: :deleted, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
-                        </td>
-                    </tr>
+                    <% @categories.each do |category| %>
+                        <tr>
+                            <td><%= category.category_name %></td>
+                            <td><%= link_to '編集', edit_admin_category_path(category), class: 'btn btn-success' %></td>
+                            <td><%= link_to '削除', admin_category_path(category), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-danger' %>
+                            </td>
+                        </tr>
+                    <% end %>
                 </tbody>
             </table>
         </div>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <%= form_with (model: @category, url: admin_category_path(category), method: :PATCH) do |f| %>
+            <%= form_with model: @category, url: admin_category_path, method: :PATCH do |f| %>
                 <%= f.label :category_name, 'カテゴリー名' %>
                 <%= f.text_field :category_name, class: 'form-control' %>
                 <%= f.submit '更新', class: 'btn btn-primary' %>

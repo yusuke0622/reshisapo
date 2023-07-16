@@ -7,9 +7,9 @@ class Admin::CategoriesController < ApplicationController
   end
   
   def create
-    @categpry = Category.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
-      redirect_to categories_path
+      redirect_to admin_categories_path
     else
       @categoies = Category.all
       render 'index'
@@ -21,7 +21,7 @@ class Admin::CategoriesController < ApplicationController
   
   def update
     if @category.update(category_params)
-      redirect_to categories_path
+      redirect_to admin_categories_path
     else
       render 'edit'
     end
@@ -29,7 +29,7 @@ class Admin::CategoriesController < ApplicationController
   
   def destroy
     @category.destroy
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
   
   private
@@ -39,6 +39,6 @@ class Admin::CategoriesController < ApplicationController
   end
   
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:category_name)
   end
 end

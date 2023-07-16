@@ -22,8 +22,9 @@
                     <%=f.label :email, 'メールアドレス' %>
                     <%= f.email_field :email %>
                 </div>
-                <div>
+                <div class="row">
                     <%= f.submit "変更" , class: 'btn btn-success' %>
+                    <%= link_to '退会', users_quit_path, class: 'btn btn-danger' %>
                 </div>
             <% end %>
         </div>

@@ -2,7 +2,7 @@
     <div>
         <h1>プロフィール管理</h1>
         
-         <%= form_with(model: @user, url: users_information_path, mothod: :PATCH) do |f| %>
+         <%= form_with(model: @user, url: users_information_path, method: :PATCH) do |f| %>
         <div>
             <% if @user.user_icon.present? %>
                 <%= image_tag @user.user_icon.variant(resize: "100x100") %>

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-
+  
   #トップページ
   root to: 'public/homes#top'
+  
+  #カテゴリー
+  namespace :admin do
+    resources :categories, except: [:new, :show]
+  end
+  
   scope module: :public do
     #ユーザー
     get   'users/my_page'           => 'users#show', as: 'my_page'
@@ -16,6 +22,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+  
   #ユーザー用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",

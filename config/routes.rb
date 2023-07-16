@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
+ 
   #トップページ
+  get 'admin' => 'admin/homes#top'
   root to: 'public/homes#top'
   
   #カテゴリー

@@ -15,4 +15,7 @@ class ApplicationController < ActionController::Base
         new_user_session_path
     end
     
+    #フラッシュメッセージkey追加
+    add_flash_types :success, :info, :warning, :dangeer
+    
 end

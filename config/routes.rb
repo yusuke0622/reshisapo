@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   
  
+  
   #トップページ
   get 'admin' => 'admin/homes#top'
   root to: 'public/homes#top'
   
+  get 'category_detail' => 'public/homes#category_detail'
   #カテゴリー
   namespace :admin do
     resources :categories, except: [:new, :show]
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
     patch 'users/information'       => 'users#update'
     get   'users/quit'              => 'users#quit'
     patch 'users/withdraw'          => 'users#withdraw'
+    
+    resources :recipes
 
   end
   

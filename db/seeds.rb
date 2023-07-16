@@ -9,3 +9,8 @@ Admin.create!(
     email: 'admin@gmail.com',
     password: 'reshisapo0622'
     )
+    
+Tag.create([
+    { tag_name: '高血圧' },
+    { tag_name: '糖質'}
+    ])

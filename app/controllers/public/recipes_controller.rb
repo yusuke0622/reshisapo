@@ -12,14 +12,15 @@ class Public::RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @ingredients = @recipe.ingredients.build
+    @steps = @recipe.steps.build
   end
   
   def create
-    @recipe = current_user.recipes.new(recipe_params)
-    tag_list = params[:recipe][:tag_name].split(nil)
+    @recipe = current_user.recipes.build(recipe_params)
+    tag_list = params[:recipe][:tag_ids].split(nil)
     if @recipe.save
       @recipe.save_tag(tag_list)
-      redirect_to recipes_path
+      redirect_to recipe_path(@recipe.id)
     end
   end
 
@@ -28,7 +29,7 @@ class Public::RecipesController < ApplicationController
   
   private
     def recipe_params
-      params.require(:recipe).permit(:recipe_name, :introduction, :serving, :category_id, 
+      params.require(:recipe).permit(:user_id, :recipe_name, :introduction, :serving, :category_id, 
       ingredients_attributes:[:id, :recipe_id, :ingredient_name, :quantity, :_destroy])
     end
 end

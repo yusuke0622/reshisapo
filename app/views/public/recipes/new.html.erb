@@ -15,7 +15,7 @@
             </div> 
             <div class="row form-group">
                <%= f.label :tag_name, 'タグ', class: 'col-md-3 font-weight-bold' %>
-               <%= f.text_field :tag_name, class: 'col-md-4' %>
+               <%= f.text_field :tag_ids, id: 'tag_ids', class: 'col-md-4' %>
                <span class="col-md-5">スペースを入力することで複数のタグを付けることができます。<br>
                    例：高血圧　糖尿病　糖質
                </span>
@@ -28,21 +28,37 @@
                 <%= f.label :introduction, '紹介文', class: 'col-md-3 font-weight-bold' %>
                 <%= f.text_area :introduction, placeholder: "どんなレシピか教えてください", rows: 5, class: 'col-md-8' %>
             </div>
-            <div class="parents">
-                <div class="row form-group">
-                    <div class="col-md-3">
-                    <%= f.label :ingredient, '材料・調味料', class: 'font-weight-bold' %><br>
-                    <%= f.text_field :serving, placeholder: "何人前", class: 'col-md-5'%>
-                    </div>
-                    <div id="ingredients">
-                        <%= f.fields_for :ingredients do |ingredient| %>
-                            <%= render "ingredient_fields", f: ingredient %>
-                        <% end %>
-                        <div class="links">
-                            <%= link_to_add_association '追加', f, :ingredients %>
-                        </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                <%= f.label :ingredient, '材料・調味料', class: 'font-weight-bold' %><br>
+                <%= f.number_field :serving, class: 'col-md-5'%>人分
+                </div>
+                <div id="ingredients">
+                    <%= f.fields_for :ingredients do |ingredient| %>
+                        <%= render "ingredient_fields", f: ingredient %>
+                    <% end %>
+                    <div class="links">
+                        <%= link_to_add_association '追加', f, :ingredients %>
                     </div>
                 </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <%= f.label :step, '作り方', class: 'font-weight-bold' %><br>
+                </div>
+                <div id="steps">
+                    <table class="tabel table-borderless">
+                        <%= f.fields_for :steps do |step| %>
+                            <%= render "step_fields", f: step %>
+                        <% end %>
+                    </table>
+                    <div class="links">
+                        <%= link_to_add_association '追加', f, :steps %>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <%= f.submit '投稿', class: 'btn btn-success btn-lg' %>
             </div>
         <% end %>
         

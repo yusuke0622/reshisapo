@@ -3,6 +3,8 @@ class Recipe < ApplicationRecord
     has_many :categories, dependent: :destroy
     has_many :recipe_tag_relatioons, dependent: :destroy
     has_many :tags, through: :recipe_tag_relations, dependent: :destroy
+    has_many :ingredients, dependent: :destroy
+    accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
     
     has_one_attached :recipe_image
     

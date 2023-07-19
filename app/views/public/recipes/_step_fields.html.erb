@@ -1,0 +1,12 @@
+<div class="nested-fields">
+    <tr>
+    <td><%= f.number_field :number, placeholder: "No."%></td>
+    <td><%= f.label :step_image, '写真', class: 'ml-4' %></td>
+    <td><%= f.file_field :step_image%></td>
+    </tr>
+    <br>
+    <tr>
+        <td colspan="3"><%= f.text_area :explanation, rows: 5, class: 'col-md-10' %></td>
+        <td><%= link_to_remove_association '削除', f, class: 'btn btn-outline-secondary' %></td>
+    </tr>
+</div>

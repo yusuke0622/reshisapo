@@ -28,7 +28,22 @@
                 <%= f.label :introduction, '紹介文', class: 'col-md-3 font-weight-bold' %>
                 <%= f.text_area :introduction, placeholder: "どんなレシピか教えてください", rows: 5, class: 'col-md-8' %>
             </div>
-
+            <div class="parents">
+                <div class="row form-group">
+                    <div class="col-md-3">
+                    <%= f.label :ingredient, '材料・調味料', class: 'font-weight-bold' %><br>
+                    <%= f.text_field :serving, placeholder: "何人前", class: 'col-md-5'%>
+                    </div>
+                    <div id="ingredients">
+                        <%= f.fields_for :ingredients do |ingredient| %>
+                            <%= render "ingredient_fields", f: ingredient %>
+                        <% end %>
+                        <div class="links">
+                            <%= link_to_add_association '追加', f, :ingredients %>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <% end %>
         
     </div>

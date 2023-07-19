@@ -60,3 +60,6 @@ gem 'devise'
 gem 'rmagick'
 
 gem 'image_processing', '~> 1.2'
+
+gem 'cocoon'
+

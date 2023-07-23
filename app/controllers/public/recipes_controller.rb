@@ -7,7 +7,6 @@ class Public::RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_tags = @recipe.tags
-    @category = Category.find_by(params[:id])
   end
 
   def new
@@ -37,6 +36,14 @@ class Public::RecipesController < ApplicationController
       redirect_to recipe_path(recipe.id)
     else 
       render :edit
+    end
+  end
+  
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    if @recipe.destroy
+      flash[:success] = "投稿を削除しました"
+      redirect_to user_path(current_user)
     end
   end
   

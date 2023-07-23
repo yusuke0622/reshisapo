@@ -59,6 +59,7 @@
                 </div>
                <div class="row">
                    <%= f.submit "変更", class: 'btn btn-success' %>
+                   <%= link_to '削除', recipe_path(@recipe), method: :delete %>
                </div>
             <% end %>
         </div>

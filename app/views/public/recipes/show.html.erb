@@ -1,3 +1,4 @@
+<%= render partial: 'layouts/flash' %>
 <div class="container">
     <div class="col-md-10">
         <div class="col-md-5 mr-auto">
@@ -14,7 +15,7 @@
                 <% end %>
             </div>
             <div class="col-md-5 ml-5 d-flex flex-column align-items-start justify-content-center">
-                <h3><%= @category.category_name %></h3>
+                <h3><%= @recipe.category.category_name %></h3>
                 <% @recipe.tags.each do |tag| %>
                     <div class="tag-list">
                         <h3><%= tag.tag_name %></h3>

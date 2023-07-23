@@ -1,7 +1,6 @@
 class Public::RecipesController < ApplicationController
   def index
-    @tag_list = Tag.all
-    @recipes = Recipe.all
+    @recipes = Recipe.page(params[:page]).order('id DESC').per(15)
   end
   
   def show

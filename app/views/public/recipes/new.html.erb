@@ -9,7 +9,7 @@
                 <%= f.text_field :recipe_name, class: 'col-md-6' %>
             </div>
             <div class="row form-group">
-                <%= f.label :category_id, 'カテゴリー選択', class: 'col-md-3 font-weight-bold' %>
+                <%= f.label :category_name, 'カテゴリー選択', class: 'col-md-3 font-weight-bold' %>
                 <%= f.collection_select :category_id, Category.all, :id, :category_name, { prompt: '選択してください' }, class: 'col-md-4' %>
                 <%= link_to 'カテゴリー詳しく', category_detail_path, class: 'col-md-3' %>
             </div> 

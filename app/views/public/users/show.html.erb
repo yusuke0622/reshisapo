@@ -1,20 +1,46 @@
 <%= render partial: 'layouts/flash' %>
 <div class="container">
-    <div>
-        <h1>マイページ</h1>
+    <div class="col-md-9 mx-auto">
+        <div class="row">
+            <div class="col-md-4 d-flex flex-column">
+                <% if @user.user_icon.present? %>
+                    <%= image_tag @user.user_icon.variant(resize: "100x100") %>
+                <% else %>
+                    <%= image_tag 'no_image.jpg', :size => "100x100" %>
+                <% end %>
+                <%= @user.name %>
+            </div>
+            <div class="col-md-4">
+                <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-warning' %>
+            </div>
+        </div>
+        <div class="text-center">
+            <h2>投稿一覧</h2>
+        </div> 
+        <% @recipes.each do |recipe| %>
+            <div class="row mt-5">
+                <div class="col-md-5">
+                    <% if recipe.recipe_image.attached? %> 
+                        <%= image_tag recipe.recipe_image.variant(resize: "500x450") %>
+                    <% else %>
+                        <%= image_tag 'no_image.jpg', :size => "100x100" %>
+                    <% end %>
+                </div>
+                <div class="col-md-5 ml-4">
+                    <h3><%= recipe.recipe_name %></h3><br>
+                    <!--<h4><%#= recipe.category.category_name %></h4><br>-->
+                    <% recipe.tags.each do |tag| %>
+                        <div class="tag-list">
+                            <h4><%= tag.tag_name %></h4>
+                        </div>
+                    <% end %><br>
+                    <%= link_to '編集', edit_recipe_path(recipe.id), class: 'btn btn-success' %>
+                </div>
+            </div>
+        <% end %>
+        <div>
+            
+        </div>
         
-        <p>
-            <% if @user.user_icon.present? %>
-                <%= image_tag @user.user_icon.variant(resize: "100x100") %>
-            <% else %>
-                <%= image_tag 'no_image.jpg', :size => "100x100" %>
-            <% end %>
-            <%= @user.name %>
-        </p>
-        <p><%= @user.email %></p>
-        
-        <p>
-            <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-warning' %>
-        </p>
     </div>
 </div>

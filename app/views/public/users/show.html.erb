@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-5 ml-4">
                     <h3><%= recipe.recipe_name %></h3><br>
-                    <!--<h4><%#= recipe.category.category_name %></h4><br>-->
+                    <h4><%= recipe.category.category_name %></h4><br>
                     <% recipe.tags.each do |tag| %>
                         <div class="tag-list">
                             <h4><%= tag.tag_name %></h4>

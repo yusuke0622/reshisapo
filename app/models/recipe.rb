@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
     belongs_to :user
-    has_many :categories, dependent: :destroy
+    belongs_to :category
     has_many :recipe_tag_relations, dependent: :destroy
     has_many :tags, through: :recipe_tag_relations, dependent: :destroy
     has_many :ingredients, dependent: :destroy

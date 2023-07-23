@@ -14,12 +14,11 @@ Rails.application.routes.draw do
   
   scope module: :public do
     #ユーザー
-    get   'users/my_page'           => 'users#show', as: 'my_page'
     get   'users/information/edit'  => 'users#edit'
     patch 'users/information'       => 'users#update'
     get   'users/quit'              => 'users#quit'
     patch 'users/withdraw'          => 'users#withdraw'
-    
+    resources :users, only:[:index, :show]
     resources :recipes
 
   end

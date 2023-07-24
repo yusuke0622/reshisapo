@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
+  #検索
+  get "search" => "searches#serch"
   #トップページ
   get 'admin' => 'admin/homes#top'
   root to: 'public/homes#top'

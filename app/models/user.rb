@@ -16,5 +16,19 @@ class User < ApplicationRecord
    user_icon.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
    end
  end
-
+ 
+ def self.looks(search, word)
+   if search == "perfect_match"
+     @user = User.where("name LIKE?", "#{word}")
+   elsif search == "forward_match"
+     @user = User.where("name LIKE?", "#{word}%")
+   elsif  search == "backward_match"
+     @user = User.where("name LIKE?", "%#{word}")
+   elsif search == "partial_match"
+     @user = User.where("name LILE?", "%#{word}%")
+   else
+     @user = User.all
+   end
+ end
+  
 end

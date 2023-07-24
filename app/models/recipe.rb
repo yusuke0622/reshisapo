@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-    belongs_to :user
+    belongs_to :Recipe
     belongs_to :category
     has_many :recipe_tag_relations, dependent: :destroy
     has_many :tags, through: :recipe_tag_relations, dependent: :destroy
@@ -27,5 +27,19 @@ class Recipe < ApplicationRecord
         end
         
     end
+    
+ def self.looks(search, word)
+   if search == "perfect_match"
+     @recipe = Recipe.where("name LIKE?", "#{word}")
+   elsif search == "forward_match"
+     @recipe = Recipe.where("name LIKE?", "#{word}%")
+   elsif  search == "backward_match"
+     @recipe = Recipe.where("name LIKE?", "%#{word}")
+   elsif search == "partial_match"
+     @recipe = Recipe.where("name LILE?", "%#{word}%")
+   else
+     @recipe = Recipe.all
+   end
+ end
     
 end

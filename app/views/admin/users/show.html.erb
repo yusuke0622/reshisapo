@@ -2,19 +2,17 @@
 <div class="container">
     <div class="col-md-9 mx-auto">
         <div class="row">
-            <div class="col-md-4 d-flex flex-column">
+            <div class="col-md-12 text-center">
                 <% if @user.user_icon.present? %>
-                    <%= image_tag @user.user_icon.variant(resize: "100x100") %>
+                    <%= image_tag @user.user_icon.variant(resize: "200x200") %>
                 <% else %>
                     <%= image_tag 'no_image.jpg', :size => "100x100" %>
                 <% end %>
-                <%= @user.name %>
-            </div>
-            <div class="col-md-4">
-                <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-warning' %>
+                <h2 class="font-weight-bold"><%= @user.name %></h2>
             </div>
         </div>
-        <div class="text-center">
+        
+        <div class="text-center mt-5">
             <h2>投稿一覧</h2>
         </div> 
         <% @recipes.each do |recipe| %>
@@ -34,7 +32,7 @@
                             <h4><%= tag.tag_name %></h4>
                         </div>
                     <% end %><br>
-                    <%= link_to '編集', edit_recipe_path(recipe.id), class: 'btn btn-success' %>
+                    <%= link_to '詳細', admin_recipe_path(recipe.id), class: 'btn btn-secondary' %>
                 </div>
             </div>
         <% end %>

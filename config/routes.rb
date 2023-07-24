@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+
   #管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
   #カテゴリー
   namespace :admin do
     resources :categories, except: [:new, :show]
+    resources :users, only: [:show, :index]
+    resources :recipes, only: [:show, :index]
   end
   
   scope module: :public do

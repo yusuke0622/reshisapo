@@ -1,6 +1,6 @@
 <%= render partial: 'layouts/flash' %>
 <div class="container">
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-10 mx-auto">
         <div class="row">
             <div class="col-md-12 text-center">
                 <% if @user.user_icon.present? %>
@@ -17,22 +17,24 @@
         </div> 
         <% @recipes.each do |recipe| %>
             <div class="row mt-5">
-                <div class="col-md-5">
+                <div class="col-md-5 text-center">
                     <% if recipe.recipe_image.attached? %> 
-                        <%= image_tag recipe.recipe_image.variant(resize: "500x450") %>
+                        <%= image_tag recipe.recipe_image.variant(resize: "250x300") %>
                     <% else %>
                         <%= image_tag 'no_image.jpg', :size => "100x100" %>
                     <% end %>
                 </div>
-                <div class="col-md-5 ml-4">
+                <div class="col-md-5 text-center">
                     <h3><%= recipe.recipe_name %></h3><br>
                     <h4><%= recipe.category.category_name %></h4><br>
                     <% recipe.tags.each do |tag| %>
                         <div class="tag-list">
-                            <h4><%= tag.tag_name %></h4>
+                            <h5><%= tag.tag_name %></h5>
                         </div>
-                    <% end %><br>
-                    <%= link_to '詳細', admin_recipe_path(recipe.id), class: 'btn btn-secondary' %>
+                    <% end %>
+                </div>
+                <div class="col-md-2 d-flex align-items-end pb-4">
+                <%= link_to '詳細', admin_recipe_path(recipe.id), class: 'btn btn-secondary' %>
                 </div>
             </div>
         <% end %>

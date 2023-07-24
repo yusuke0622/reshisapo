@@ -1,12 +1,12 @@
 <%= render partial: 'layouts/flash' %>
-<div class="container">
+<div class="container mt-5">
     <div class="col-md-10">
-        <div class="col-md-5 mr-auto">
-            <h1>
+        <div class="col-md-7 mr-auto">
+            <h2>
                 <%= @recipe.recipe_name %>
-            </h1>
+            </h2>
         </div>
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-6 align-baseline">
                 <% if @recipe.recipe_image.attached? %> 
                     <%= image_tag @recipe.recipe_image.variant(resize: "500x450") %>
@@ -24,7 +24,7 @@
                 <h4><%= @recipe.introduction %></h4>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 mt-5">
             <h2>材料（<%= @recipe.serving %>人分）</h2>
             <table class="table table-borderless">
                 <tr>

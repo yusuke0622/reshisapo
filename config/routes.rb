@@ -12,8 +12,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
-  #検索
-  get "search" => "searches#serch"
+  
   #トップページ
   get 'admin' => 'admin/homes#top'
   root to: 'public/homes#top'
@@ -36,6 +35,9 @@ Rails.application.routes.draw do
     resources :recipes
 
   end
+  
+  #検索
+  get "search" => "public/searches#search"
   
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

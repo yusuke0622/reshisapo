@@ -32,7 +32,9 @@ Rails.application.routes.draw do
     get   'users/quit'              => 'users#quit'
     patch 'users/withdraw'          => 'users#withdraw'
     resources :users, only:[:index, :show]
-    resources :recipes
+    resources :recipes do
+      resource :favorites, only: [:create, :destroy]
+    end
 
   end
   
@@ -42,5 +44,8 @@ Rails.application.routes.draw do
   resources :tags do
     get 'recipes', to: 'recipes#search_tag'
   end
+  
+  #いいね
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

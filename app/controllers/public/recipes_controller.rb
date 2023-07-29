@@ -16,12 +16,16 @@ class Public::RecipesController < ApplicationController
   
   def create
     @recipe = current_user.recipes.new(recipe_params)
-    tag_list = params[:recipe][:tag_ids].split(nil)
+    tag_list = params[:recipe][:tag_name].split(nil)
     if @recipe.save
       @recipe.save_tag(tag_list)
       redirect_to recipe_path(@recipe.id)
+    else
+      render :new
     end
   end
+  
+  
 
   def edit
     @recipe = Recipe.find(params[:id])
@@ -46,9 +50,15 @@ class Public::RecipesController < ApplicationController
     end
   end
   
+  def search_tag
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @recipes = @tag.recipes.all
+  end
+  
   private
     def recipe_params
-      params.require(:recipe).permit(:user_id, :recipe_name, :introduction, :serving, :category_id, :recipe_image, :step_image,
+      params.require(:recipe).permit(:user_id, :recipe_name, :introduction, :serving, :category_id, :recipe_image, :step_image, tag_ids: [],
       ingredients_attributes:[:id, :recipe_id, :ingredient_name, :quantity, :_destroy],
       steps_attributes:[:id, :recipe_id, :explanation, :step_image, :number, :_destroy])
     end

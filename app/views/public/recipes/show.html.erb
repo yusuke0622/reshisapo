@@ -18,7 +18,9 @@
                 <h3><%= @recipe.category.category_name %></h3>
                 <% @recipe.tags.each do |tag| %>
                     <div class="tag-list">
+                        <%= link_to tag_recipes_path(tag_id: tag.id) do %>
                         <h3><%= tag.tag_name %></h3>
+                        <% end %>
                     </div>
                 <% end %>
                 <h4><%= @recipe.introduction %></h4>

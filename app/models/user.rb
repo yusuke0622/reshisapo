@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one_attached :user_icon
   
   has_many :recipes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
          
  def no_image

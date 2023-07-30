@@ -15,6 +15,7 @@
                     <%= link_to recipe_path(recipe.id) do %>
                     <p class="text-center"><%= recipe.recipe_name %></p>
                     <% end %>
+                    <span>♡</span><%= recipe.favorites.count %>
                 </div>
             <% end %>
         </div>

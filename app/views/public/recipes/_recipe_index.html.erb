@@ -1,0 +1,10 @@
+
+<% if recipe.recipe_image.attached? %> 
+    <%= image_tag recipe.recipe_image.variant(resize: "300x300") %>
+<% else %>
+    <%= image_tag 'no_image.jpg', :size => "100x100" %>
+<% end %>
+<%= link_to recipe_path(recipe.id) do %>
+<p class="text-center"><%= recipe.recipe_name %></p>
+<% end %>
+<span>♡</span><%= recipe.favorites.count %>

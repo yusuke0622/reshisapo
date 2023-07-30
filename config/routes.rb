@@ -31,7 +31,11 @@ Rails.application.routes.draw do
     patch 'users/information'       => 'users#update'
     get   'users/quit'              => 'users#quit'
     patch 'users/withdraw'          => 'users#withdraw'
-    resources :users, only:[:index, :show]
+    resources :users, only:[:index, :show] do 
+      member do 
+        get :favorites
+      end
+    end
     resources :recipes do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]

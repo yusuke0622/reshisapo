@@ -10,7 +10,7 @@
                 <% end %>
                 <h3 class="text-center"><%= @user.name %></h3>
             </div>
-            <% if user_id == current_user.id %>
+            <% if @user.id == current_user.id %>
                 <div class="col-md-6">
                     <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-warning' %>
                 </div>
@@ -36,7 +36,9 @@
                     <% end %>
                 </div>
                 <div class="col-md-5 ml-4">
-                    <h3><%= recipe.recipe_name %></h3><br>
+                    <%= link_to recipe_path(recipe.id) do %>
+                        <h3><%= recipe.recipe_name %></h3><br>
+                    <% end %>
                     <h4><%= recipe.category.category_name %></h4><br>
                     <% recipe.tags.each do |tag| %>
                         <div class="tag-list">

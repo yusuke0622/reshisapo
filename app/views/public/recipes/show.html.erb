@@ -75,9 +75,33 @@
                     </div>
                 <% end %>
             </div>
+            <div class="col-md-12">
+                <%= form_with(model:[@recipe, @comment], method: :post) do |f| %>
+                    <div class="col-md-8">
+                        <h3>コメント</h3>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_area :content, row: 3, class: 'col-md-8' %>
+                        <%= f.hidden_field :recipe_id, value: @recipe.id %>
+                        <%= f.submit 'コメントする', class: 'btn btn-outline-secondary' %>
+                    </div>
+                <% end %>
+                    <div class="col-md-8">
+                        <h2>コメント一覧</h2>
+                    </div>
+                    <% @comments.each do |comment| %>
+                        <div class="col-md-10">
+                            <%= comment.user.name %>
+                            <%= comment.content %>
+                        </div>
+                    <% end %>
+             </div>
             
         </div>
-        <div class="text-center">
-            <%= link_to '編集', edit_recipe_path(@recipe.id) %>
-        </div>
+        <% if @recipe.user_id == current_user.id %>
+            <div class="row text-center">
+                <%= link_to '編集', edit_recipe_path(@recipe.id) %>
+                <%= link_to '削除', recipe_path(@recipe.id), method: :delete %>
+            </div>
+        <% end %>
     </div>

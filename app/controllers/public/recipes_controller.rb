@@ -6,6 +6,9 @@ class Public::RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_tags = @recipe.tags
+    @comments = @recipe.comments
+    @comment = current_user.comments.new
+    @user = User.find_by(params[:id])
   end
 
   def new

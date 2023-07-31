@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
 
+  namespace :admin do
+    get 'comments/destroy'
+  end
   #管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -21,7 +24,7 @@ Rails.application.routes.draw do
   #カテゴリー
   namespace :admin do
     resources :categories, except: [:new, :show]
-    resources :users, only: [:show, :index]
+    resources :users, only: [:show, :index, :destroy]
     resources :recipes, only: [:show, :index]
   end
   

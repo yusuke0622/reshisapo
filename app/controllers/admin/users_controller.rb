@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  
+  
   def show
     @user = User.find(params[:id])
     @recipes = @user.recipes.all
@@ -7,4 +9,13 @@ class Admin::UsersController < ApplicationController
   def index
     @users = User.page(params[:page]).order('id ASC').per(12)
   end
+  
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path
+  end
+  
+  private
+ 
 end

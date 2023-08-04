@@ -47,6 +47,10 @@ Rails.application.routes.draw do
     resources :tags do
       get 'recipes' => 'recipes#search_tag'
     end
+    
+     resources :categories do
+      get 'recipes' => 'recipes#search_category'
+    end
 
      
 

@@ -26,8 +26,12 @@
                 <% end %>
             </div>
             <div class="col-md-5 ml-5 d-flex flex-column align-items-start justify-content-center">
-                <h3><%= @recipe.category.category_name %></h3>
-                        <% @recipe.tags.each do |tag| %>
+                <h3>
+                    <%= link_to category_recipes_path(category_id: @category.id) do %>
+                        <%= @recipe.category.category_name %>
+                    <% end %>
+                </h3>
+                <% @recipe.tags.each do |tag| %>
                     <div class="tag-list">
                         <%= link_to tag_recipes_path(tag_id: tag.id) do %>
                             <h3><%= tag.tag_name %></h3>

@@ -12,6 +12,7 @@ class Public::RecipesController < ApplicationController
     @comments = @recipe.comments
     @comment = current_user.comments.new
     @user = User.find_by(params[:id])
+    @category = Category.find_by(params[:id])
   end
 
   def new
@@ -59,7 +60,12 @@ class Public::RecipesController < ApplicationController
   def search_tag
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.all
+    @tag_recipes = @tag.recipes.all
+  end
+  
+  def search_category
+    @category = Category.find(params[:category_id])
+    @category_recipes = @category.recipes.all
   end
   
   private

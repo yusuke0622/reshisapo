@@ -43,15 +43,21 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]
     end
+    
+    resources :tags do
+      get 'recipes' => 'recipes#search_tag'
+    end
+
+     
 
   end
   
   #検索
   get "search" => "public/searches#search"
   
-  resources :tags do
-    get 'recipes', to: 'recipes#search_tag'
-  end
+  
+  
+ 
   
   #いいね
   

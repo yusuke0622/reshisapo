@@ -6,7 +6,7 @@ class Public::SearchesController < ApplicationController
         if @range == "User"
             @users = User.looks(params[:search], params[:word])
         else 
-             @recipes = Recipe.looks(params[:search], params[:word])
+            @recipes = Recipe.looks(params[:search], params[:word])
         end
         
     end

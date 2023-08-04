@@ -2,7 +2,7 @@
     <div class="col-md-10 mx-auto">
         <div class="mt-5">
             <h2 class="font-weight-bold text-center">
-                <%= @tag.name %>に関する投稿
+                <%= @tag.tag_name %>に関する投稿
             </h2>
         </div>
         
@@ -19,9 +19,9 @@
             <% end %>
         </div>
         
-         <div class="d-flex justify-content-center mt-5">
-            <%= paginate @recipes %>
-        </div>
+        <!-- <div class="d-flex justify-content-center mt-5">
+            <%#= paginate @recipes %>
+        </div> -->
         
     </div>
 </div>

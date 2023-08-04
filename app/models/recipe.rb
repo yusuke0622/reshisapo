@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-    belongs_to :Recipe
+    # belongs_to :Recipe
     belongs_to :category
     has_many :recipe_tag_relations, dependent: :destroy
     has_many :tags, through: :recipe_tag_relations, dependent: :destroy
@@ -34,6 +34,7 @@ class Recipe < ApplicationRecord
         end
         
     end
+    
     
  def self.looks(search, word)
    if search == "perfect_match"

@@ -9,6 +9,9 @@ class Public::RecipesController < ApplicationController
     @comments = @recipe.comments
     @comment = current_user.comments.new
     @user = User.find_by(params[:id])
+    @comments = @recipe.comments
+    @comment = current_user.comments.new
+    @user = User.find_by(params[:id])
   end
 
   def new
@@ -19,7 +22,7 @@ class Public::RecipesController < ApplicationController
   
   def create
     @recipe = current_user.recipes.new(recipe_params)
-    tag_list = params[:recipe][:tag_name].split(nil)
+    tag_list = params[:recipe][:tag_ids].split(nil)
     if @recipe.save
       @recipe.save_tag(tag_list)
       redirect_to recipe_path(@recipe.id)
@@ -62,7 +65,7 @@ class Public::RecipesController < ApplicationController
   private
     def recipe_params
       params.require(:recipe).permit(:user_id, :recipe_name, :introduction, :serving, :category_id, :recipe_image, :step_image, tag_ids: [],
-      ingredients_attributes:[:id, :recipe_id, :ingredient_name, :quantity, :_destroy],
-      steps_attributes:[:id, :recipe_id, :explanation, :step_image, :number, :_destroy])
+      ingredients_attributes:[:id, :ingredient_name, :quantity, :_destroy],
+      steps_attributes:[:id, :explanation, :step_image, :number, :_destroy])
     end
 end

@@ -2,7 +2,9 @@ class Public::CommentsController < ApplicationController
    
     def create
         @comment = current_user.comments.new(comment_params)
+        @recipe = @rcomment.recipe
         if @comment.save
+            @recipe.create_notification_comment!(current_user, @comment.id)
             redirect_back(fallback_location: root_path)
         else
             redirect_back(fallback_location: root_path)

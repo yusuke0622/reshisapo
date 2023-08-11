@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="col-md-6 mx-auto">
+     <div class="row mt-5 mb-3">
+            <div class="col-md-10">
+                <h2 class="text-center">通知</h2>
+            </div>
+            <div class="col-md-2">
+                <%= link_to notifications_destroy_all_path(@notifications), method: :delete do %>
+                    <i class="fa-solid fa-square-xmark fa-2x mt-1", style="color: #151313;"></i>
+                <% end %>
+            </div>
+        </div>
+    <% if @notifications.exists? %>
+        <%= render @notifications %>
+        <%= paginate @notifications %>
+    <% else %>
+    <p>通知はありません</p>
+    <% end %>
+</div>

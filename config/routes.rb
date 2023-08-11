@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   
 
-  namespace :admin do
-    get 'comments/destroy'
-  end
+  
   #管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -25,7 +23,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :categories, except: [:new, :show]
     resources :users, only: [:show, :index, :destroy]
-    resources :recipes, only: [:show, :index]
+    resources :recipes, only: [:show, :index, :destroy] do
+      resources :comments, only: [:destroy]
+    end
   end
   
   scope module: :public do
@@ -39,21 +39,22 @@ Rails.application.routes.draw do
         get :favorites
       end
     end
+    # レシピ
     resources :recipes do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]
     end
-    
+    #タグ絞り込み
     resources :tags do
       get 'recipes' => 'recipes#search_tag'
     end
-    
+    #カテゴリー絞り込み
      resources :categories do
       get 'recipes' => 'recipes#search_category'
     end
-
-     
-
+    # 通知
+    resources :notifications, only: [:index]
+    delete 'notifications/destroy_all' => 'notifications#destroy_all'
   end
   
   #検索

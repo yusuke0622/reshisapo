@@ -8,10 +8,6 @@ class Public::RecipesController < ApplicationController
     @recipe_tags = @recipe.tags
     @comments = @recipe.comments
     @comment = current_user.comments.new
-    @user = User.find_by(params[:id])
-    @comments = @recipe.comments
-    @comment = current_user.comments.new
-    @user = User.find_by(params[:id])
     @category = Category.find_by(params[:id])
   end
 

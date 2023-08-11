@@ -1,20 +1,32 @@
 <%= render partial: 'layouts/flash' %>
 <div class="container mt-5">
     <div class="col-md-10">
-        <div class="col-md-7 mr-auto">
+        <div class="row col-md-8">
             <h2>
                 <%= @recipe.recipe_name %>
             </h2>
-            <% if @recipe.favorited?(current_user) %>
-                <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
-                    <span>♡️</span>
-                    <%= @recipe.favorites.count %>
+            <div class="col-md-5 ml-md-4">
+                <% if @recipe.favorited?(current_user) %>
+                    お気に入り登録
+                    <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
+                       <i class="fa-regular fa-heart"></i>
+                    <% end %>
+                <% else %>
+                    お気に入り解除
+                    <%= link_to recipe_favorites_path(@recipe.id), method: :post do %>
+                        <i class="fa-solid fa-heart-circle-minus"></i>
+                    <% end %>
                 <% end %>
-            <% else %>
-                <%= link_to recipe_favorites_path(@recipe.id), method: :post do %>
-                    <span>❤️</span>
-                    <%= @recipe.favorites.count %>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <%= link_to user_path(@recipe.user.id) do %>
+                <% if @recipe.user.user_icon.present? %>
+                    <%= image_tag @recipe.user.user_icon.variant(resize: "60x60") %>
+                <% else %>
+                    <%= image_tag 'no_image.jpg', :size => "60x60" %>
                 <% end %>
+                <h4 class="text-center"><%= @recipe.user.name %></h4>
             <% end %>
         </div>
         <div class="row mt-4">
@@ -101,7 +113,7 @@
                         <% if current_user.id == comment.user_id %>
                             <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete %>
                             <%= link_to "編集", edit_recipe_comment_path(@recipe, comment) %>
-                        <% elsif current_user.id == recipe.user_id %>
+                        <% elsif current_user.id == @recipe.user_id %>
                             <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
                         <% end %>
                     <% end %>

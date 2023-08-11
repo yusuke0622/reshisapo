@@ -1,0 +1,19 @@
+<% visitor = notification.visitor %>
+<% recipe = notification.recipe %>
+
+<div class="form-inline">
+    <span>
+        <%= link_to user_path(visitor) do %>
+            <% if visitor.user_icon.present? %>
+            <%= image_tag visitor.user_icon.variant(resize: "30x30") %>
+            <% else %>
+            <%= image_tag 'no_image.jpg', :size => "30x30" %>
+            <% end %>
+        <% end %>
+    </span>
+     <%= notification_form(notification) %>
+    <span class="moderate-font"><%= "(#{time_ago_in_words(notification.created_at)}前)" %></span>
+    <% if !@comment.nil? %>
+        <p class="moderate-font text-center"><%= @comment %></p>
+    <% end %>
+</div>

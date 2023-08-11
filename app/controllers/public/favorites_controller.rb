@@ -2,8 +2,8 @@ class Public::FavoritesController < ApplicationController
     def create
         @recipe_favorite = Favorite.new(user_id: current_user.id, recipe_id: params[:recipe_id])
         @recipe_favorite.save
-        recipe = Recipe.find(params[:recipe_id])
-        recipe.create_notification_favorite!(current_user)
+        @recipe = Recipe.find(params[:recipe_id])
+        @recipe.create_notification_favorite!(current_user)
         redirect_to recipe_path(params[:recipe_id])
     end
     

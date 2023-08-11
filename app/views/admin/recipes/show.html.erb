@@ -75,7 +75,7 @@
                             <%= comment.user.name %>
                             <%= comment.content %>
                         </div>
-                        <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete %>
+                        <%= link_to "削除", admin_recipe_comment_path(@recipe, comment), method: :delete %>
                     <% end %>
              </div>
             

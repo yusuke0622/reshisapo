@@ -1,0 +1,32 @@
+ <div class="col-md-10">
+    <div class="col-md-4 mr-auto">
+        <h2 class="font-weight-bold">新着投稿</h2>
+    </div>
+    
+     <% @recipes.each do |recipe| %>
+        <div class="d-flex flex-warp flex-row bd-highlight">
+            <div>
+                <% if recipe.recipe_image.attached? %> 
+                    <%= image_tag recipe.recipe_image.variant(resize: "400x400") %>
+                <% else %>
+                    <%= image_tag 'no_image.jpg', :size => "100x100" %>
+                <% end %>
+                <p class="text-center"><%= recipe.recipe_name %></p>
+            </div>
+         </div>
+     <% end %>
+   
+    <div class="text-center">
+        <%= link_to 'レシピをもっと見る', recipes_path %>
+    </div>
+</div>
+<div class="col-md-10">
+    <div class="col-md-4 mr-auto">
+        <h2 class="font-weight-bold">カテゴリー</h2>
+    </div>
+    <% @categories.each do |category| %>
+        <div class="mt-4 d-flex flex-warp">
+            <h3 class="border rounded border-dark p-5 mr-3"><%= category.category_name %></h3>
+        </div>
+    <% end %>
+</div>

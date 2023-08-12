@@ -18,4 +18,15 @@ class Admin::RecipesController < ApplicationController
     end
   end
   
+  def search_tag
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @tag_recipes = @tag.recipes.page(params[:page]).order('id DESC').per(15)
+  end
+  
+  def search_category
+    @category = Category.find(params[:category_id])
+    @category_recipes = @category.recipes.page(params[:page]).order('id DESC').per(15)
+  end
+  
 end

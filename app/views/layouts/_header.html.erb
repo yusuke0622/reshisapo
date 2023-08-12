@@ -9,10 +9,17 @@
                  <h1>レシサポ</h1>
                 <% end %>
             </div>
+            <% if user_signed_in? %>
             <div>
-            <%= render "layouts/search" %>
+                <%= render partial: 'search' %>
             </div>
+            <% elsif admin_signed_in? %>
+            <div>
+                <%= render partial: 'layouts/admin_search' %>
+            </div>
+            <% end %>
         </div>
+        
         <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
                 <li>

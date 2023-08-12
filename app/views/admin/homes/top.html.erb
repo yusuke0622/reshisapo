@@ -1,7 +1,30 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-11">
-            <%= render partial: 'public/homes/top' %>
+            <div class="col-md-12">
+                <%= render partial: 'public/homes/top' %>
+                <div class="text-center mb-4">
+                    <%= link_to 'レシピをもっと見る', admin_recipes_path %>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <div class="col-md-4 mr-auto">
+                    <h2 class="font-weight-bold">カテゴリー</h2>
+                </div>
+                <div class="mt-4">
+                    <% @categories.each do |category| %>
+                        <div class="mr-auto">
+                            <div class="col-md-10">
+                                <%= link_to admin_category_recipes_path(category_id: category.id) do %>
+                                    <li class="mr-3"><%= category.category_name %>
+                                <% end %>
+                                        <span>(<%= category.recipes.count %>)</span>
+                                    </li>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
         </div>
     </div>
 </div>

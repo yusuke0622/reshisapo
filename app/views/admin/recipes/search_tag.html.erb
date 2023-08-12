@@ -1,31 +1,31 @@
 <div class="container">
-    <div class="col-md-10 mx-auto">
+    <div class="col-md-11 mx-auto">
         <div class="mt-5">
-            <h2 class="font-weight-bold text-center">投稿一覧</h2>
+            <h2 class="font-weight-bold text-center">
+                <%= @tag.tag_name %>に関する投稿
+            </h2>
         </div>
         
         <div class="col-md-12 mt-5">
-            <div class="d-flex flex-warp">
-                <% @recipes.each do |recipe| %>
+             <div class="d-flex flex-warp">
+                <% @tag_recipes.each do |recipe| %>
                     <div class="col-md-5">
                         <% if recipe.recipe_image.attached? %> 
                             <%= image_tag recipe.recipe_image.variant(resize: "300x300") %>
                         <% else %>
                             <%= image_tag 'no_image.jpg', :size => "100x100" %>
                         <% end %>
-                        <p class="text-center">
-                            <%= link_to admin_recipe_path(recipe.id) do %>
-                                <%= recipe.recipe_name %>
-                            <% end %>
-                        </p>
+                         <%= link_to admin_recipe_path(recipe.id) do %>
+                            <p class="text-center"><%= recipe.recipe_name %><span>♡</span><%= recipe.favorites.count %></p>
+                        <% end %>
                     </div>
                 <% end %>
             </div>
         </div>
         
         <div class="d-flex justify-content-center mt-5">
-            <%= paginate @recipes %>
-        </div>
+            <%= paginate @tag_recipes %>
+        </div> 
+        
     </div>
 </div>
-    

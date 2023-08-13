@@ -1,4 +1,6 @@
 class Public::RecipesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @recipes = Recipe.page(params[:page]).order('id DESC').per(15)
   end
@@ -7,8 +9,10 @@ class Public::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe_tags = @recipe.tags
     @comments = @recipe.comments
-    @comment = current_user.comments.new
     @category = Category.find_by(params[:id])
+    if user_signed_in?
+      @comment = current_user.comments.new
+    end
   end
 
   def new

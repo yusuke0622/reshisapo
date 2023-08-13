@@ -19,7 +19,8 @@
     <header>
       <%= render 'layouts/header' %>
     </header>
-    <main>
+      <%= render 'layouts/flash_message' %>
+    <main class="mt-4">
     <%= yield %>
     </main>
     <footer>

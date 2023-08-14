@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @recipes = @user.recipes.all
+    @category = Category.find_by(params[:id])
   end
 
   def edit

@@ -1,17 +1,16 @@
-<%= render partial: 'layouts/flash' %>
 <div class="container">
-    <div class="col-md-9 mx-auto">
-        <div class="row">
-            <div class="col-md-6 d-flex flex-column align-items-center">
+    <div class="col-md-9 mx-auto mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-5 d-flex flex-column align-items-center">
                 <% if @user.user_icon.present? %>
                     <%= image_tag @user.user_icon.variant(resize: "200x200") %>
                 <% else %>
-                    <%= image_tag 'no_image.jpg', :size => "200x200" %>
+                    <%= image_tag 'no_image.jpg', :size => "150x150" %>
                 <% end %>
                 <h3 class="text-center"><%= @user.name %></h3>
             </div>
-             <div class="col-md-6">
-                <%= link_to 'お気に入りレシピ', favorites_user_path(@user), class: 'btn btn-warning mb-3' %><br>
+             <div class="col-md-5 d-flex flex-column align-items-center justify-content-start">
+                <%= link_to 'お気に入りレシピ', favorites_user_path(@user), class: 'btn btn-warning my-3' %><br>
             <% if @user.id == current_user.id %>
                     <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-success' %>
             <% end %>
@@ -24,25 +23,33 @@
                 <% end %>
         </div>
         <% @recipes.each do |recipe| %>
-            <div class="row mt-5">
-                <div class="col-md-5">
-                    <% if recipe.recipe_image.attached? %> 
-                        <%= image_tag recipe.recipe_image.variant(resize: "500x450") %>
-                    <% else %>
-                        <%= image_tag 'no_image.jpg', :size => "100x100" %>
-                    <% end %>
+            <div class="row mt-5 mx-auto">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-center">
+                        <% if recipe.recipe_image.attached? %> 
+                            <%= image_tag recipe.recipe_image.variant(resize: "500x450") %>
+                        <% else %>
+                            <%= image_tag 'no_recipe_image.png', :size => "300x300" %>
+                        <% end %>
+                    </div>
                 </div>
-                <div class="col-md-5 ml-4">
-                    <%= link_to recipe_path(recipe.id) do %>
-                        <h3><%= recipe.recipe_name %></h3><br>
-                    <% end %>
-                    <h4><%= recipe.category.category_name %></h4><br>
-                    <% recipe.tags.each do |tag| %>
-                        <div class="tag-list">
-                            <h4><%= tag.tag_name %></h4>
-                        </div>
-                    <% end %><br>
-                    <%= link_to '編集', edit_recipe_path(recipe.id), class: 'btn btn-success' %>
+                <div class="col-md-6">
+                    <div class="col-md-12 d-flex flex-column align-items-center justify-content-center" style= "height: 100%;">
+                        <%= link_to recipe_path(recipe.id) do %>
+                            <h3 class="text-dark"><%= recipe.recipe_name %></h3><br>
+                        <% end %>
+                        <%= link_to category_recipes_path(category_id: @category.id) do %>
+                            <h4 class="text-dark"><%= recipe.category.category_name %></h4><br>
+                        <% end %>
+                        <% recipe.tags.each do |tag| %>
+                            <div class="tag-list">
+                                <%= link_to tag_recipes_path(tag_id: tag.id) do %>
+                                    <h4 class="text-dark"><%= tag.tag_name %></h4>
+                                <% end %>
+                            </div>
+                        <% end %><br>
+                        <%= link_to '編集', edit_recipe_path(recipe.id), class: 'btn btn-success text-left' %>
+                    </div>
                 </div>
             </div>
         <% end %>

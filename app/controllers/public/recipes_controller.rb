@@ -1,5 +1,5 @@
 class Public::RecipesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search_category, :search_tag]
 
   def index
     @recipes = Recipe.page(params[:page]).order('id DESC').per(15)

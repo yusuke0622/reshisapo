@@ -1,32 +1,41 @@
-<div>
-    <div>
-        <h1>プロフィール管理</h1>
+<div class="container">
+    <div class="col-md-10 mx-auto">
+        <div class="col-md-12 mt-5">
+           <h2 class="font-weight-bold text-center">プロフィール編集</h2>
+        </div>
         
          <%= form_with(model: @user, url: users_information_path, method: :PATCH) do |f| %>
-        <div>
-            <% if @user.user_icon.present? %>
-                <%= image_tag @user.user_icon.variant(resize: "100x100") %>
-            <% else %>
-                <%= image_tag no_image.variant(resize: "100x100") %>
-            <% end %>
-            <%= f.label :user_icon, 'アイコン変更' %>
-            <%= f.file_field :user_icon %>
-        </div>
+            <div class="col-md-12">
+                <div class="d-flex  justify-content-center my-4">
+                    <% if @user.user_icon.present? %>
+                        <%= image_tag @user.user_icon.variant(resize: "100x100") %>
+                    <% else %>
+                        <%= image_tag 'no_image.jpg', :size => "150x150" %>
+                    <% end %>
+                </div>
+                <div class="row form-group d-flex justify-content-center">
+                    <%= f.label :user_icon, 'アイコン変更', class: 'col-md-2 col-sm-5 offset-md-2' %>
+                    <%= f.file_field :user_icon, class: 'col-md-5 col-sm-4' %>
+                </div>
+                <div class="row form-group d-flex justify-content-center">
+                    <%= f.label :name, 'ユーザーネーム', class: 'col-md-2 col-sm-5' %>
+                    <%= f.text_field :name, class: 'col-md-3 col-sm-4' %>
+                </div>
+               <div class="row form-group d-flex justify-content-center">
+                    <%=f.label :email, 'メールアドレス', class: 'col-md-2 col-sm-5' %>
+                    <%= f.email_field :email, class: 'col-md-3 col-sm-4' %>
+                </div>
+                <div class="row d-flex justify-content-center mt-4">
+                        <%= f.submit "変更" , class: 'btn btn-success col-md-2' %>
+                        <%= link_to '退会', users_quit_path, class: 'btn btn-danger col-md-2 ml-md-3' %>
+                </div>
+            </div>
+        <% end %>
         <div>
            
-                <div>
-                    <%= f.label :name, 'ユーザーネーム' %>
-                    <%= f.text_field :name %>
-                </div>
-                <div>
-                    <%=f.label :email, 'メールアドレス' %>
-                    <%= f.email_field :email %>
-                </div>
-                <div class="row">
-                    <%= f.submit "変更" , class: 'btn btn-success' %>
-                    <%= link_to '退会', users_quit_path, class: 'btn btn-danger' %>
-                </div>
-            <% end %>
+              
+                
+            
         </div>
     
     </div>

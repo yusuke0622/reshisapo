@@ -36,6 +36,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:recipe_id)
     @favorite_recipes = Recipe.find(favorites)
+    @favorite_recipes = Kaminari.paginate_array(@favorite_recipes).page(params[:page]).per(15)
   end
   
   private 

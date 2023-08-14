@@ -1,28 +1,30 @@
 <div class="container">
-    <div class="col-md-11 mx-auto">
+    <div class="col-md-10 mx-auto">
         <div class="mt-5">
             <h2 class="font-weight-bold text-center">お気に入りレシピ</h2>
         </div>
-        <div class="d-flex flex-wrap">
-            <% @favorite_recipes.each do |recipe| %>
-            <div class="column ml-5">
-                <% if recipe.recipe_image.attached? %> 
-                        <%= image_tag recipe.recipe_image.variant(resize: "250x300") %>
-                <% else %>
-                        <%= image_tag 'no_image.jpg', :size => "250x300" %>
+        <div class="col-md-12 mt-5">
+            <div class="d-flex flex-wrap">
+                <% @favorite_recipes.each do |recipe| %>
+                    <div class="col-md-4">
+                        <div class="d-flex justify-content-center">
+                           <% if recipe.recipe_image.attached? %> 
+                            <%= image_tag recipe.recipe_image.variant(resize: "300x300") %>
+                           <% else %>
+                            <%= image_tag 'no_recipe_image.png', :size => "100x100" %>
+                           <% end %>
+                        </div>
+                        <%= link_to recipe_path(recipe.id) do %>
+                        <p class="text-center text-dark"><%= recipe.recipe_name %>
+                            <span>♡</span><%= recipe.favorites.count %>                        
+                        </p>
+                        <% end %>
+                    </div>
                 <% end %>
-                    <%= link_to recipe_path(recipe.id) do %>
-                    <p class="text-center">
-                        <%= recipe.recipe_name %>
-                    <% end %>
-                    <span>♡</span><%= recipe.favorites.count %>
-                    </p>
             </div>
-                <%#= render 'public/recipes/recipe_index'%>
-            <% end %>
         </div>
-        <!--<div class="d-flex justify-content-center mt-5">
-            <%#= paginate @favorite_recipes %>
-        </div>-->
+        <div class="d-flex justify-content-center mt-5">
+            <%= paginate @favorite_recipes %>
+        </div>
     </div>
 </div>

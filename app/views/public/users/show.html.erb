@@ -11,9 +11,9 @@
             </div>
              <div class="col-md-5 d-flex flex-column align-items-center justify-content-start">
                 <%= link_to 'お気に入りレシピ', favorites_user_path(@user), class: 'btn btn-warning my-3' %><br>
-            <% if @user.id == current_user.id %>
-                    <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-success' %>
-            <% end %>
+                <% if @user.id == current_user.id %>
+                        <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-success' %>
+                <% end %>
             </div>
         </div>
         <div class="row mt-5 d-flex justify-content-center">

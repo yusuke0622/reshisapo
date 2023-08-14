@@ -1,10 +1,12 @@
 <div class="container">
-    <div class="d-flex flex-column align-items-center text-center justify-content-center">
-        <h3>本当に退会しますか？</h3>
-        <p>※退会によって登録された情報は消去されます</p>
-        <div class="row">
-        <%= link_to '退会しない', my_page_path(current_user), class: 'btn btn-primary' %>
-        <%= link_to '退会する', users_withdraw_path(current_user), method: :PATCH, data: {confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-danger' %>
+    <div class="col-md-8 mx-auto">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="height: 70vh;">
+            <h3>本当に退会しますか？</h3>
+            <p>※退会によって登録された情報は消去されます</p>
+            <div class="row mt-4">
+            <%= link_to '退会しない', user_path(current_user), class: 'btn btn-primary' %>
+            <%= link_to '退会する', users_withdraw_path(current_user), method: :PATCH, data: {confirm: "本当に退会してよろしいですか？"}, class: 'btn btn-danger ml-md-3' %>
+            </div>
         </div>
     </div>
 </div>

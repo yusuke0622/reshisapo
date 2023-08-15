@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container mt-5">
         <div class="col-md-10 mx-auto">
             <div class="text-center">
                 <h1>レシピ投稿編集</h1>
             </div>
             <%= form_with model:@recipe, url: recipe_path(@recipe.id), method: :PATCH do |f| %>
-                <div class="row form-group">
+                <div class="row form-group mt-5">
                     <%= f.label :recipe_name, 'レシピ名', class: 'col-md-3 font-weight-bold' %>
                     <%= f.text_field :recipe_name, class: 'col-md-6' %>
                 </div>
@@ -16,8 +16,8 @@
                 <div class="row form-group">
                    <%= f.label :tag_name, 'タグ', class: 'col-md-3 font-weight-bold' %>
                    <%= f.text_field :tag_name, value: @tag_list, class: 'col-md-4' %>
-                   <span class="col-md-5">スペースを入力することで複数のタグを付けることができます。<br>
-                       例：高血圧　糖尿病　糖質
+                   <span class="col-md-5">半角スペースを入力することで複数のタグを付けることができます。<br>
+                       例：高血圧 糖尿病 糖質
                    </span>
                 </div>
                 <div class="row form-group">
@@ -33,12 +33,12 @@
                         <%= f.label :ingredient, '材料・調味料', class: 'font-weight-bold' %><br>
                         <%= f.number_field :serving, class: 'col-md-5'%>人分
                     </div>
-                    <div id="ingredients">
+                    <div class="col-md-9" id="ingredients">
                         <%= f.fields_for :ingredients do |ingredient| %>
                             <%= render "ingredient_fields", f: ingredient %>
                         <% end %>
-                        <div class="links">
-                            <%= link_to_add_association '追加', f, :ingredients %>
+                        <div class="links d-flex justify-content-end mt-3">
+                            <%= link_to_add_association '追加', f, :ingredients, class: 'btn btn-outline-secondary col-md-2' %>
                         </div>
                     </div>
                 </div>
@@ -46,20 +46,18 @@
                     <div class="col-md-3">
                         <%= f.label :step, '作り方', class: 'font-weight-bold' %><br>
                     </div>
-                    <div id="steps">
-                        <table class="tabel table-borderless">
-                            <%= f.fields_for :steps do |step| %>
-                                <%= render "step_fields", f: step %>
-                            <% end %>
-                        </table>
-                        <div class="links">
-                            <%= link_to_add_association '追加', f, :steps %>
+                    <div class="col-md-9" id="steps">
+                        <%= f.fields_for :steps do |step| %>
+                            <%= render "step_fields", f: step %>
+                        <% end %>
+                        <div class="links d-flex justify-content-end mt-3">
+                            <%= link_to_add_association '追加', f, :steps, class: 'btn btn-outline-secondary col-md-2' %>
                         </div>
                     </div>
                 </div>
-               <div class="row">
-                   <%= f.submit "変更", class: 'btn btn-success' %>
-                   <%= link_to '削除', recipe_path(@recipe), method: :delete %>
+               <div class="row d-flex justify-content-center mt-5">
+                   <%= f.submit "更新", class: 'btn btn-success col-md-3' %>
+                   <%= link_to '削除', recipe_path(@recipe), class: 'btn btn-danger col-md-3 ml-3', method: :delete %>
                </div>
             <% end %>
         </div>

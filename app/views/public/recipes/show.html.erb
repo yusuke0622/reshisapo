@@ -1,81 +1,89 @@
 
 <div class="container mt-5">
-    <div class="col-md-10">
-        <div class="row col-md-8">
-            <h2>
-                <%= @recipe.recipe_name %>
-            </h2>
-            <div class="col-md-5 ml-md-4">
-                <% if user_signed_in? && @recipe.favorited?(current_user) %>
-                    お気に入り登録
-                    <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
-                       <i class="fa-regular fa-heart"></i>
+    <div class="col-md-10 mx-auto">
+        <div class="row col-md-12">
+            <div>
+                <h2 class="text-left">
+                    <%= @recipe.recipe_name %>
+                    <small class="font-weight-light text-sm">♡<%= @recipe.favorites.count %></small>
+                </h2>
+            </div>
+            <div class="ml-auto">
+                <% if @recipe.user_id != current_user.id %>
+                    <% if user_signed_in? && @recipe.favorited?(current_user) %>
+                        <%= link_to 'お気に入り解除', recipe_favorites_path(@recipe.id), class: 'btn btn-outline-warning ml-2 d-flex justify-content-end', method: :delete %>
+                    <% else %>
+                        <%= link_to  'お気に入り登録', recipe_favorites_path(@recipe.id), class: 'btn btn-warning ml-2 d-flex justify-content-end', method: :post %>
                     <% end %>
-                <% elsif user_signed_in? %>
-                    お気に入り解除
-                    <%= link_to recipe_favorites_path(@recipe.id), method: :post do %>
-                        <i class="fa-solid fa-heart-circle-minus"></i>
-                    <% end %>
-                <% else %>
-                    ♡<%= @recipe.favorites.count %>
                 <% end %>
             </div>
+        
         </div>
-        <div class="col-md-5">
-            <% if user_signed_in? %>
-                <%= link_to user_path(@recipe.user.id) do %>
-                    <% if @recipe.user.user_icon.present? %>
-                        <%= image_tag @recipe.user.user_icon.variant(resize: "60x60") %>
-                    <% else %>
-                        <%= image_tag 'no_image.jpg', :size => "60x60" %>
-                    <% end %>
-                    <h4 class="text-center"><%= @recipe.user.name %></h4>
-                <% end %>
-            <% else %>
-                <% if @recipe.user.user_icon.present? %>
-                    <%= image_tag @recipe.user.user_icon.variant(resize: "60x60") %>
-                <% else %>
-                    <%= image_tag 'no_image.jpg', :size => "60x60" %>
-                <% end %>
-                <h4 class="text-center"><%= @recipe.user.name %></h4>
-            <% end %>
-        </div>
-        <div class="row mt-4">
-            <div class="col-md-6 align-baseline">
+        <div class="row col-md-12 mt-3">
+            <div class="col-md-8 d-flex justify-content-center"><!--レシピ画像--->
                 <% if @recipe.recipe_image.attached? %> 
-                    <%= image_tag @recipe.recipe_image.variant(resize: "500x450") %>
+                    <%= image_tag @recipe.recipe_image.variant(resize: "300x320") %>
                 <% else %>
-                    <%= image_tag 'no_recipe_image.png', :size => "100x100" %>
+                    <%= image_tag 'no_recipe_image.png', :size => "300x320" %>
                 <% end %>
             </div>
-            <div class="col-md-5 ml-5 d-flex flex-column align-items-start justify-content-center">
-                <h3>
-                    <% if user_signed_in? %>
-                    <%= link_to category_recipes_path(category_id: @category.id) do %>
-                        <%= @recipe.category.category_name %>
-                    <% end %>
-                    <% else %>
-                        <%= @recipe.category.category_name %>
-                    <% end %>
-                </h3>
-                <% @recipe.tags.each do |tag| %>
-                    <div class="tag-list">
-                        <% if user_signed_in? %>
-                            <%= link_to tag_recipes_path(tag_id: tag.id) do %>
-                                <h3><%= tag.tag_name %></h3>
-                            <% end %>
+            <div class="col-md-4 d-flex flex-column align-items-start justify-content-center">
+                <!---ユーザー-->
+                <% if user_signed_in? %>
+                    <%= link_to user_path(@recipe.user.id), class: 'd-flex' do %>
+                        <% if @recipe.user.user_icon.present? %>
+                            <%= image_tag @recipe.user.user_icon.variant(resize: "30x30") %>
                         <% else %>
-                            <h3><%= tag.tag_name %></h3>
+                            <%= image_tag 'no_image.jpg', :size => "30x30" %>
                         <% end %>
+                        <h4 class="text-dark ml-3 font-weight-normal"><%= @recipe.user.name %></h4>
+                    <% end %>
+                <% else %>
+                    <div class="d-flex">
+                        <% if @recipe.user.user_icon.present? %>
+                            <%= image_tag @recipe.user.user_icon.variant(resize: "30x30") %>
+                        <% else %>
+                            <%= image_tag 'no_image.jpg', :size => "30x30" %>
+                        <% end %>
+                        <h4 class="text-dark ml-3 font-weight-normal"><%= @recipe.user.name %></h4>
                     </div>
                 <% end %>
-                <h4><%= @recipe.introduction %></h4>
-            </div>
+                <!--カテゴリー-->
+                <div class="d-flex mt-2">   
+                    <h5>カテゴリー</h5>
+                    <% if user_signed_in? %>
+                        <%= link_to category_recipes_path(category_id: @category.id) do %>
+                           <h5 class="text-dark ml-3 border-bottom border-dark"><%= @recipe.category.category_name %></h4>
+                        <% end %>
+                        <% else %>
+                            <h5 class="text-dark ml-3 border-bottom border-dark"><%= @recipe.category.category_name %></h4>
+                    <% end %>
+                </div> 
+                <!--タグ--->
+                <div class="d-flex mt-2">   
+                    <% @recipe.tags.each do |tag| %>
+                        <div class="tag-list">
+                            <% if user_signed_in? %>
+                                <%= link_to tag_recipes_path(tag_id: tag.id) do %>
+                                    <h6 class="text-dark ml-1">#<%= tag.tag_name %></h6>
+                                <% end %>
+                            <% else %>
+                                <h6 class="text-dark ml-1">#<%= tag.tag_name %></h6>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+                <h5 class="mt-2">説明</h5>
+                <p><u><%= @recipe.introduction %></u></p>
+            </div>    
         </div>
-        <div class="col-md-12 mt-5">
-            <h2>材料（<%= @recipe.serving %>人分）</h2>
-            <table class="table table-borderless">
-                <tr>
+        
+        <div class="row d-flex flex-column col-md-12 mt-5">
+            <h2 class="text-left">材料
+                <small>（<%= @recipe.serving %>人分）</small>
+            </h2>
+            <table class="table col-md-8 mx-auto mt-4">
+                <tr class="table-light">
                     <th>食材・調味料</th>
                     <th>分量</th>
                 </tr>
@@ -87,62 +95,84 @@
                 <% end %>
             </table>
         </div>
-        <div class="col-md-12">
-            <div class="col-md-8">
-                <h2>作り方</h2>
-            </div>
-            <div class="d-flex flex-warp flex-column">
-                <% @recipe.steps.each do |step| %>
-                    <div class="col-md-6">
-                        <div class="col-md-2">
-                            <h3 class="border border-dark"><%= step.number %></h3>
+        <div class="row d-flex flex-column mt-5 col-md-12">
+            <h2 class="text-left">作り方</h2>
+            <div class="col-md-10 mx-auto mt-5">
+                <div class="d-flex flex-wrap">
+                    <% @recipe.steps.each do |step| %>
+                        <div class="col-md-6">
+                            <div class="mr-auto">
+                                <span class="border rounded-lg border-dark py-2 px-3 bg-secondary text-light"><%= step.number %></span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                                <% if step.step_image.attached? %>
+                                    <%= image_tag step.step_image.variant(resize: "300x200") %>
+                                <% else %>
+                                    <%= image_tag 'no_recipe_image.png', :size => "220x220" %>
+                                <% end %>
+                                <p><%= step.explanation %></p>
+                            </div>
                         </div>
-                        <div>
-                            <% if step.step_image.attached? %>
-                                <%= image_tag step.step_image.variant(resize: "300x200") %>
-                            <% else %>
-                                <%= image_tag 'no_image.jpg', :size => "100x100" %>
-                            <% end %>
-                        </div>
-                        <div class="mt-1">
-                            <h5><%= step.explanation %></h5>
-                        </div>
-                    </div>
-                <% end %>
+                    <% end %>
+                </div>
             </div>
         </div>
         <% if user_signed_in? %>
-            <div class="col-md-12">
+            <div class="row col-md-12 d-flex flex-column mt-5">
                 <%= form_with(model:[@recipe, @comment], method: :post) do |f| %>
-                    <div class="col-md-8">
-                        <h3>コメント</h3>
+                    <div class="mr-auto">
+                        <h2>コメント</h2>
                     </div>
-                    <div class="form-group">
-                        <%= f.text_area :content, row: 3, class: 'col-md-8' %>
+                    <div class="form-group col-md-9 mx-auto text-center mt-4">
+                        <%= f.text_area :content, rows: 4, class: 'col-md-12' %>
                         <%= f.hidden_field :recipe_id, value: @recipe.id %><br>
                         <%= f.submit 'コメントする', class: 'btn btn-outline-secondary' %>
                     </div>
                 <% end %>
-                <div class="col-md-8">
+                <div class="mr-auto">
                     <h2>コメント一覧</h2>
                 </div>
-                <% @comments.each do |comment| %>
-                    <div class="col-md-10">
-                        <%= comment.user.name %>
-                        <%= comment.content %>
-                    </div>
-                    <% if current_user.id == comment.user_id %>
-                        <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete %>
-                        <%= link_to "編集", edit_recipe_comment_path(@recipe, comment) %>
-                    <% elsif current_user.id == @recipe.user_id %>
-                        <%= link_to "削除", recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                <div class="col-md-9 row mx-auto mt-4">
+                    <% @comments.each do |comment| %>
+                        <% if user_signed_in? %>
+                            <div class="row">
+                                <%= link_to user_path(comment.user.id), class: 'd-flex' do %>
+                                    <% if @recipe.user.user_icon.present? %>
+                                        <%= image_tag comment.user.user_icon.variant(resize: "20x20") %>
+                                    <% else %>
+                                        <%= image_tag 'no_image.jpg', :size => "20x20" %>
+                                    <% end %>
+                                    <h5 class="text-dark ml-2 font-weight-normal"><%= comment.user.name %></h5>
+                                <% end %>
+                                    <h5 class="ml-4"><%= comment.content %></h5>
+                            </div>
+                        <% else %>
+                            <div class="row">
+                                <% if comment.user.user_icon.present? %>
+                                    <%= image_tag comment.user.user_icon.variant(resize: "20x20") %>
+                                <% else %>
+                                    <%= image_tag 'no_image.jpg', :size => "20x20" %>
+                                <% end %>
+                                <h4 class="text-dark ml-3 font-weight-normal"><%= comment.user.name %></h4>
+                            </div>
+                            <%= comment.content %>
+                        <% end %>
+                        
+                        <div class="mx-4">
+                            <% if current_user.id == comment.user_id %>
+                                <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: 'border-bottom border-secondary text-dark' %>
+                                <%= link_to "削除", recipe_comment_path(@recipe, comment), class: 'border-bottom border-secondary text-dark', method: :delete %>
+                            <% elsif current_user.id == @recipe.user_id %>
+                                <%= link_to "削除", recipe_comment_path(@recipe, comment), class: 'border-bottom border-secondary text-dark', method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                            <% end %>
+                        </div>
                     <% end %>
-                <% end %>
+                </div>
             </div>
             <% if @recipe.user_id == current_user.id %>
-                <div class="row text-center">
-                    <%= link_to '編集', edit_recipe_path(@recipe.id) %>
-                    <%= link_to '削除', recipe_path(@recipe.id), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                <div class="row d-flex justify-content-center mt-5">
+                    <%= link_to '編集', edit_recipe_path(@recipe.id), class: 'btn btn-outline-success mr-4 col-md-2' %>
+                    <%= link_to '削除', recipe_path(@recipe.id), class: 'btn btn-outline-danger col-md-2', method: :delete, data: { confirm: "本当に削除しますか?" } %>
                 </div>
             <% end %>
         <% end %>

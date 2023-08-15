@@ -1,20 +1,20 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-9 mx-auto">
             <table class="table">
                 <% if @range == "User" %>
                     <tbody>
                         <% @users.each do |user| %>
                             <tr>
-                                <td>
+                                <td class="text-center">
                                     <% if user.user_icon.present? %>
-                                    <%= image_tag user.user_icon.variant(resize: "200x200") %>
+                                    <%= image_tag user.user_icon.variant(resize: "100x100") %>
                                     <% else %>
                                     <%= image_tag 'no_image.jpg', :size => "100x100" %>
                                     <% end %>
                                 </td>
-                                <td>
-                                    <%= link_to user_path(user.id) do %>
+                                <td class="align-middle">
+                                    <%= link_to user_path(user.id), class: 'text-dark font-weight-bold' do %>
                                         <%= user.name %>
                                     <% end %>
                                 </td>
@@ -25,20 +25,20 @@
                     <tbody>
                         <% @recipes.each do |recipe| %>
                             <tr>
-                                <td>
+                                <td class="text-center">
                                     <% if recipe.recipe_image.attached? %> 
                                     <%= image_tag recipe.recipe_image.variant(resize: "250x300") %>
                                     <% else %>
-                                    <%= image_tag 'no_image.jpg', :size => "100x100" %>
+                                    <%= image_tag 'no_recipe_image.png', :size => "200x200" %>
                                     <% end %>
                                 </td>
-                                <td>
-                                    <%= link_to recipe_path(recipe.id) do %>
+                                <td class="align-middle">
+                                    <%= link_to recipe_path(recipe.id), class: 'text-dark font-weight-bold' do %>
                                         <%= recipe.recipe_name %>
                                     <% end %>
                                 </td>
-                                <td>
-                                    <%= recipe.category.category_name %>
+                                <td class="align-middle">
+                                        <%= recipe.category.category_name %>
                                 </td>
                             </tr>
                         <% end %>

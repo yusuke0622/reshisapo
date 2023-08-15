@@ -9,5 +9,5 @@ class Admin::SearchesController < ApplicationController
             @recipes = Recipe.looks(params[:search], params[:word])
         end
     end
-    
+    @category = Category.find_by(params[:id])
 end

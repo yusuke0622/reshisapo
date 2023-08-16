@@ -1,0 +1,23 @@
+        <div class="d-flex">
+            <% if @recipe.user.user_icon.present? %>
+                <%= image_tag @recipe.user.user_icon.variant(resize: "35x30"), class: 'rounded-circle', style: "object-fit: cover;" %>
+            <% else %>
+                <%= image_tag 'no_image.jpg', :size => "30x30", class: 'rounded-circle'%>
+            <% end %>
+            <h4 class="text-dark ml-3 font-weight-normal"><%= @recipe.user.name %></h4>
+        </div>
+        <!--カテゴリー-->
+        <div class="d-flex mt-2">   
+            <h5>カテゴリー</h5>
+            <h5 class="text-dark ml-3 border-bottom border-dark"><%= @recipe.category.category_name %></h5>
+        </div> 
+         <!--タグ--->
+        <div class="d-flex mt-2">   
+            <% @recipe.tags.each do |tag| %>
+                <div class="tag-list">
+                    <h6 class="text-dark ml-1">#<%= tag.tag_name %></h6>
+                </div>
+            <% end %>
+        </div>
+        <h5 class="mt-2">説明</h5>
+        <p><u><%= @recipe.introduction %></u></p>

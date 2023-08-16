@@ -5,7 +5,9 @@
         </div>
         
         <div class="col-md-12 mt-5">
-            <%= render partial: 'recipe_each' %>
+            <div class="d-flex flex-wrap">
+                <%= render partial: "recipes", collection: @recipes, as: :recipe %>
+            </div>
             <div class="d-flex justify-content-center mt-5">
                 <%= paginate @recipes %>
             </div>

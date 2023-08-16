@@ -8,9 +8,9 @@
             <div class="col-md-12">
                 <div class="d-flex  justify-content-center my-4">
                     <% if @user.user_icon.present? %>
-                        <%= image_tag @user.user_icon.variant(resize: "100x100") %>
+                        <%= image_tag @user.user_icon.variant(resize: "150x150"), class: 'rounded-circle' %>
                     <% else %>
-                        <%= image_tag 'no_image.jpg', :size => "150x150" %>
+                        <%= image_tag 'no_image.jpg', :size => "150x150", class: 'rounded-circle' %>
                     <% end %>
                 </div>
                 <div class="row form-group d-flex justify-content-center">

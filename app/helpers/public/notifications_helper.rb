@@ -12,7 +12,7 @@ module Public::NotificationsHelper
         case notification.action
             when "favorite" then
                 tag.a(notification.visitor.name, href: user_path(@visitor), style: "font-weight: bold;") + "が" + 
-                tag.a('あなたの投稿', href: recipe_path(notification.recipe_id), style: "font-weight: bold;") + "にいいいねしました"
+                tag.a('あなたの投稿', href: recipe_path(notification.recipe_id), style: "font-weight: bold;") + "をお気に入り登録しました"
             when "comment" then
                 tag.a(@visitor.name, href: user_path(@visitor), style: "font-weight: bold;") + "が" +
                 tag.a('あなたの投稿', href: recipe_path(notification.recipe_id), style: "font-weight: bold;") + "にコメントしました"

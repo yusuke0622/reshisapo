@@ -1,19 +1,20 @@
 <div class="container">
-    <div class="col-md-9 mx-auto mt-5">
+    <div class="col-md-10 mx-auto mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-5 d-flex flex-column align-items-center">
                 <% if @user.user_icon.present? %>
-                    <%= image_tag @user.user_icon.variant(resize: "200x200") %>
+                    <%= image_tag @user.user_icon.variant(resize: "200x200"), class: 'rounded-circle', style: "object-fit: cover;" %>
                 <% else %>
-                    <%= image_tag 'no_image.jpg', :size => "150x150" %>
+                    <%= image_tag 'no_image.jpg', :size => "200x200", class: 'rounded-circle' %>
                 <% end %>
                 <h3 class="text-center"><%= @user.name %></h3>
-            </div>
-             <div class="col-md-5 d-flex flex-column align-items-center justify-content-start">
-                <%= link_to 'お気に入りレシピ', favorites_user_path(@user), class: 'btn btn-warning my-3' %><br>
+             <div class="col-md-8 d-flex flex-column align-items-center justify-content-start">
                 <% if @user.id == current_user.id %>
-                        <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-success' %>
+                        <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-outline-secondary mt-2' %>
                 <% end %>
+                <%= link_to 'お気に入りレシピ', favorites_user_path(@user), class: 'btn btn-warning my-3' %><br>
+                
+                </div>
             </div>
         </div>
         <div class="row mt-5 d-flex justify-content-center">
@@ -23,32 +24,33 @@
                 <% end %>
         </div>
         <% @recipes.each do |recipe| %>
-            <div class="row mt-5 mx-auto">
+            <div class="row mt-4 mx-auto">
                 <div class="col-md-6">
                     <div class="d-flex justify-content-center">
                         <% if recipe.recipe_image.attached? %> 
-                            <%= image_tag recipe.recipe_image.variant(resize: "500x450") %>
+                            <%= image_tag recipe.recipe_image.variant(resize: "300x300"), style: "object-fit: contain;" %>
                         <% else %>
-                            <%= image_tag 'no_recipe_image.png', :size => "300x300" %>
+                            <%= image_tag 'no_recipe_image.png', :size => "300x300", style: "object-fit: contain;" %>
                         <% end %>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="col-md-12 d-flex flex-column align-items-center justify-content-center" style= "height: 100%;">
                         <%= link_to recipe_path(recipe.id) do %>
-                            <h3 class="text-dark"><%= recipe.recipe_name %></h3><br>
+                            <h4 class="text-dark font-weight-bold"><%= recipe.recipe_name %></h4><br>
                         <% end %>
                         <%= link_to category_recipes_path(category_id: @category.id) do %>
                             <h4 class="text-dark"><%= recipe.category.category_name %></h4><br>
                         <% end %>
-                        <% recipe.tags.each do |tag| %>
-                            <div class="tag-list">
+                        <div class="tag-list d-flex flex-row">
+                            <% recipe.tags.each do |tag| %>
                                 <%= link_to tag_recipes_path(tag_id: tag.id) do %>
-                                    <h4 class="text-dark"><%= tag.tag_name %></h4>
+                                    <h4 class="text-dark">#<%= tag.tag_name %></h4>
                                 <% end %>
-                            </div>
-                        <% end %><br>
-                        <%= link_to '編集', edit_recipe_path(recipe.id), class: 'btn btn-success text-left' %>
+                            <% end %>
+                        </div>
+            
+                        <%= link_to '編集', edit_recipe_path(recipe.id), class: 'btn btn-outline-success text-left mt-2' %>
                     </div>
                 </div>
             </div>

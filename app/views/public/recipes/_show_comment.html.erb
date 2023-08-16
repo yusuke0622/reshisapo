@@ -1,0 +1,36 @@
+<%= form_with(model:[@recipe, @comment], method: :post) do |f| %>
+    <div class="mr-auto">
+        <h2>コメント</h2>
+    </div>
+    <div class="form-group col-md-9 mx-auto text-center mt-4">
+        <%= f.text_area :content, rows: 4, class: 'col-md-12' %>
+        <%= f.hidden_field :recipe_id, value: @recipe.id %><br>
+        <%= f.submit 'コメントする', class: 'btn btn-outline-secondary' %>
+    </div>
+<% end %>
+<div class="mr-auto">
+    <h2>コメント一覧</h2>
+</div>
+<div class="col-md-9 d-flex flex-column mx-auto mt-4">
+    <% @comments.each do |comment| %>
+        <div class="row mt-3">
+            <%= link_to user_path(comment.user.id), class: 'd-flex' do %>
+                <% if comment.user.user_icon.present? %>
+                    <%= image_tag comment.user.user_icon.variant(resize: "30x30"), class: 'rounded-circle', style: "object-fit: cover;" %>
+                <% else %>
+                    <%= image_tag 'no_image.jpg', :size => "30x30", class: 'rounded-circle'%>
+                <% end %>
+                <h5 class="text-dark ml-2 font-weight-normal"><%= comment.user.name %></h5>
+            <% end %>
+                <h5 class="ml-4"><%= comment.content %></h5>
+                <div class="mx-4">
+                    <% if current_user.id == comment.user_id %>
+                        <%= link_to "編集", edit_recipe_comment_path(@recipe, comment), class: 'border-bottom border-secondary text-dark' %>
+                        <%= link_to "削除", recipe_comment_path(@recipe, comment), class: 'border-bottom border-secondary text-dark', method: :delete %>
+                    <% elsif current_user.id == @recipe.user_id %>
+                        <%= link_to "削除", recipe_comment_path(@recipe, comment), class: 'border-bottom border-secondary text-dark', method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                    <% end %>
+                </div>
+        </div>
+    <% end %>
+</div>

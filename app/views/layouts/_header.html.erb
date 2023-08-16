@@ -30,9 +30,13 @@
                         <%= link_to "レシピ一覧", recipes_path, class: 'nav-link' %>
                     </li>
                     <li>
-                        <%= link_to "通知一覧", notifications_path, class: 'nav-link' %>
-                        <% if unchecked_notifications.any? %>
-                            <i class="fa-solid fa-circle" style="color: #f27897;"></i>
+                        <%= link_to  notifications_path, class: 'nav-link' do%>
+                            <% if unchecked_notifications.any? %>
+                                <i class="fa-solid fa-bell" style="color: #d9639c;"></i>
+                            <% else %>
+                                <i class="fa-regular fa-bell"></i>
+                            <% end %>
+                            通知一覧
                         <% end %>
                     </li>
                     <li>

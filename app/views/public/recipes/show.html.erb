@@ -83,7 +83,7 @@
             </div>
         <% end %>
          <% if @recipe.user_id == current_user.id %>
-                <div class="row d-flex justify-content-center mt-5">
+                <div style="margin-top: 100px;" class="row d-flex justify-content-center">
                     <%= link_to '編集', edit_recipe_path(@recipe.id), class: 'btn btn-outline-success mr-4 col-md-2' %>
                     <%= link_to '削除', recipe_path(@recipe.id), class: 'btn btn-outline-danger col-md-2', method: :delete, data: { confirm: "本当に削除しますか?" } %>
                 </div>

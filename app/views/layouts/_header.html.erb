@@ -1,15 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light border-bottom">
     <div class="container">
-            <%= link_to root_path, class: 'navbar-brand' do %>
-            <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
-             レシサポ
-            <% end %>
-            
             <% if user_signed_in? %>
+                <%= link_to root_path, class: 'navbar-brand' do %>
+                <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
+                 レシサポ
+            <% end %>
             <div>
                 <%= render partial: 'layouts/search' %>
             </div>
             <% elsif admin_signed_in? %>
+                <%= link_to admin_path, class: 'navbar-brand' do %>
+                <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
+                 レシサポ
+            <% end %>
             <div>
                 <%= render partial: 'layouts/admin_search' %>
             </div>

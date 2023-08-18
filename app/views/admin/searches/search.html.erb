@@ -1,50 +1,7 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row">
-        <div class="col-md-10">
-            <table class="table">
-                <% if @range == "User" %>
-                    <tbody>
-                        <% @users.each do |user| %>
-                            <tr>
-                                <td>
-                                    <% if user.user_icon.present? %>
-                                    <%= image_tag user.user_icon.variant(resize: "200x200") %>
-                                    <% else %>
-                                    <%= image_tag 'no_image.jpg', :size => "100x100" %>
-                                    <% end %>
-                                </td>
-                                <td>
-                                    <%= link_to admin_user_path(user.id) do %>
-                                        <%= user.name %>
-                                    <% end %>
-                                </td>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                <% else %>
-                    <tbody>
-                        <% @recipes.each do |recipe| %>
-                            <tr>
-                                <td>
-                                    <% if recipe.recipe_image.attached? %> 
-                                    <%= image_tag recipe.recipe_image.variant(resize: "250x300") %>
-                                    <% else %>
-                                    <%= image_tag 'no_image.jpg', :size => "100x100" %>
-                                    <% end %>
-                                </td>
-                                <td>
-                                    <%= link_to admin_recipe_path(recipe.id) do %>
-                                        <%= recipe.recipe_name %>
-                                    <% end %>
-                                </td>
-                                <td>
-                                    <%= recipe.category.category_name %>
-                                </td>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                <% end %>
-            </table>
+        <div class="col-md-7 mx-auto">
+           <%= render partial: "public/searches/search" %> 
         </div>
     </div>
 </div>

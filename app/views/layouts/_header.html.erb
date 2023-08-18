@@ -2,20 +2,25 @@
     <div class="container">
             <% if user_signed_in? %>
                 <%= link_to root_path, class: 'navbar-brand' do %>
-                <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
-                 レシサポ
-            <% end %>
-            <div>
-                <%= render partial: 'layouts/search' %>
-            </div>
+                    <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
+                     レシサポ
+                <% end %>
+                <div>
+                    <%= render partial: 'layouts/search' %>
+                </div>
             <% elsif admin_signed_in? %>
                 <%= link_to admin_path, class: 'navbar-brand' do %>
-                <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
-                 レシサポ
-            <% end %>
-            <div>
-                <%= render partial: 'layouts/admin_search' %>
-            </div>
+                    <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
+                     レシサポ
+                <% end %>
+                <div>
+                    <%= render partial: 'layouts/admin_search' %>
+                </div>
+            <% else %>
+                <%= link_to root_path, class: 'navbar-brand' do %>
+                    <%= image_tag 'logo.jpg', :size => "60x60", class: 'd-inline-block align-text-center' %>
+                     レシサポ
+                <% end %>
             <% end %>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -8,8 +8,26 @@
                 <% end %>
             </div>
             <div class="d-flex justify-content-center">
-                <%= link_to recipe_path(recipe.id) do %>
-                    <p class="text-center text-dark"><%= recipe.recipe_name %></p>
+                <% if current_page?(controller: 'admin/homes', action: 'top') %>
+                    <%= link_to admin_recipe_path(recipe.id) do %>
+                        <p class="text-center text-dark"><%= recipe.recipe_name %></p>
+                    <% end %>
+                <% elsif current_page?(controller: 'admin/recipes', action: 'index') %>
+                    <%= link_to admin_recipe_path(recipe.id) do %>
+                        <p class="text-center text-dark"><%= recipe.recipe_name %></p>
+                    <% end %>
+                 <% elsif current_page?("/admin/categories/caategory_id/recipes") %>
+                    <%= link_to admin_recipe_path(recipe.id) do %>
+                        <p class="text-center text-dark"><%= recipe.recipe_name %></p>
+                    <% end %>
+                 <% elsif current_page?("/admin/tags/tag_id/recipes") %>
+                    <%= link_to admin_recipe_path(recipe.id) do %>
+                        <p class="text-center text-dark"><%= recipe.recipe_name %></p>
+                    <% end %>
+                <% else %>
+                    <%= link_to recipe_path(recipe.id) do %>
+                        <p class="text-center text-dark"><%= recipe.recipe_name %></p>
+                    <% end %>
                 <% end %>
                 <span>♡</span><%= recipe.favorites.count %>   
             </div>

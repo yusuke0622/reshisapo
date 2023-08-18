@@ -1,28 +1,46 @@
 <div class="container">
     <div class="row mt-5">
-        <div class="col-md-11">
-            <div class="col-md-12">
-                <%= render partial: 'public/recipes/recipe_each' %>
-                <div class="text-center mb-4">
+        <div class="col-md-12">
+            <div class="col-md-12 my-5 mx-auto">
+                <div class="d-flex flex-wrap">
+                    <%= render partial: "public/recipes/recipes", collection: @recipes, as: :recipe %>
+                </div>
+                <div class="text-center my-5">
                     <%= link_to 'レシピをもっと見る', admin_recipes_path %>
                 </div>
             </div>
-            <div class="col-md-12 mt-5">
-                <div class="col-md-4 mr-auto">
-                    <h2 class="font-weight-bold">カテゴリー</h2>
+            <div style="margin-top: 100px;" class="col-md-12 row">
+                <div class="col-md-6 pull-left">
+                    <div class="mr-md-auto">
+                        <h2 class="font-weight-bold">カテゴリー</h2>
+                    </div>
+                    <div class="mt-4">
+                        <% @categories.each do |category| %>
+                            <%= link_to admin_category_recipes_path(category_id: category.id) do %>
+                                <li class="ml-md-4 text-dark"><%= category.category_name %>
+                                    <span>(<%= category.recipes.count %>)</span>
+                                </li>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <% @categories.each do |category| %>
-                        <div class="mr-auto">
-                            <div class="col-md-10">
-                                <%= link_to admin_category_recipes_path(category_id: category.id) do %>
-                                    <li class="mr-3"><%= category.category_name %>
-                                <% end %>
-                                        <span>(<%= category.recipes.count %>)</span>
+                <div class="col-md-6 mt-xs-4">
+                    <div class="mr-auto">
+                        <h2 class="font-weight-bold">タグ</h2>
+                    </div>
+                    <div class="mt-4">
+                        <% @tags.each do |tag| %>
+                            <%= link_to admin_tag_recipes_path(tag_id: tag.id) do %>
+                                <% if tag.recipes.count > 0 %>
+                                    <li class="ml-md-4 text-dark"><%= tag.tag_name %>
+                                    <span>
+                                        (<%= tag.recipes.count %>)
+                                    </span>
                                     </li>
-                            </div>
-                        </div>
-                    <% end %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         </div>

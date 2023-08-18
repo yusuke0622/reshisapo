@@ -1,47 +1,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-7 mx-auto">
-            <table class="table">
-                <% if @range == "User" %>
-                    <tbody>
-                        <% @users.each do |user| %>
-                            <tr>
-                                <td class="text-center">
-                                    <% if user.user_icon.present? %>
-                                    <%= image_tag user.user_icon.variant(resize: "100x100"), class: 'rounded-circle', style: "object-fit: cover;" %>
-                                    <% else %>
-                                    <%= image_tag 'no_image.jpg', :size => "100x100", class: 'rounded-circle' %>
-                                    <% end %>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <%= link_to user_path(user.id), class: 'text-dark font-weight-bold h3' do %>
-                                        <%= user.name %>
-                                    <% end %>
-                                </td>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                <% else %>
-                    <tbody>
-                        <% @recipes.each do |recipe| %>
-                            <tr>
-                                <td class="text-center">
-                                    <% if recipe.recipe_image.attached? %> 
-                                    <%= image_tag recipe.recipe_image.variant(resize: "250x300"), style: "object-fit: cover;" %>
-                                    <% else %>
-                                    <%= image_tag 'no_recipe_image.png', :size => "200x200", style: "object-fit: cover;" %>
-                                    <% end %>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <%= link_to recipe_path(recipe.id), class: 'text-dark font-weight-bold' do %>
-                                        <%= recipe.recipe_name %>
-                                    <% end %>
-                                </td>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                <% end %>
-            </table>
+           <%= render partial: "search" %> 
         </div>
     </div>
 </div>

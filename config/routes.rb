@@ -21,12 +21,12 @@ Rails.application.routes.draw do
   get 'category_detail' => 'public/homes#category_detail'
   #カテゴリー
   namespace :admin do
-    resources :categories, except: [:new, :show] do 
-       get 'recipes' => 'recipes#search_category'
-    end
     resources :users, only: [:show, :index, :destroy]
     resources :recipes, only: [:show, :index, :destroy] do
       resources :comments, only: [:destroy]
+    end
+    resources :categories, except: [:new, :show] do 
+       get 'recipes' => 'recipes#search_category'
     end
     resources :tags do 
        get 'recipes' => 'recipes#search_tag'

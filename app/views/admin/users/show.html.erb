@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="col-md-10 mx-auto">
+    <div class="col-md-11 mx-auto">
         <div class="row">
             <div class="col-md-12 text-center">
                 <% if @user.user_icon.present? %>
-                    <%= image_tag @user.user_icon.variant(resize: "200x200") %>
+                    <%= image_tag @user.user_icon, :size => "200x200", class: 'rounded-circle', style: "object-fit: cover;" %>
                 <% else %>
-                    <%= image_tag 'no_image.jpg', :size => "100x100" %>
+                    <%= image_tag 'no_image.jpg', :size => "200x200", class: 'rounded-circle'  %>
                 <% end %>
                 <h2 class="font-weight-bold"><%= @user.name %></h2>
             </div>
@@ -16,24 +16,20 @@
         </div> 
         <% @recipes.each do |recipe| %>
             <div class="row mt-5">
-                <div class="col-md-5 text-center">
+                <div class="col-md-7 text-center">
                     <% if recipe.recipe_image.attached? %> 
-                        <%= image_tag recipe.recipe_image.variant(resize: "250x300") %>
+                        <%= image_tag recipe.recipe_image, :size => "350x280", style: "object-fit: cover;" %>
                     <% else %>
-                        <%= image_tag 'no_image.jpg', :size => "100x100" %>
+                        <%= image_tag 'no_recipe_image.png', :size => "300x300", style: "object-fit: cover;" %>
                     <% end %>
                 </div>
-                <div class="col-md-5 text-center">
-                    <h3><%= recipe.recipe_name %></h3><br>
-                    <h4><%= recipe.category.category_name %></h4><br>
-                    <% recipe.tags.each do |tag| %>
-                        <div class="tag-list">
-                            <h5><%= tag.tag_name %></h5>
-                        </div>
-                    <% end %>
-                </div>
-                <div class="col-md-2 d-flex align-items-end pb-4">
-                <%= link_to '詳細', admin_recipe_path(recipe.id), class: 'btn btn-secondary' %>
+                <div class="col-md-4 d-flex flex-column justify-content-center align-items-center">
+                        <%= link_to admin_recipe_path(recipe.id) do %>
+                            <h4 class="font-weight-bold text-dark"><%= recipe.recipe_name %>
+                            <span>♡</span><%= recipe.favorites.count %> 
+                            </h4>
+                        <% end %>
+                        <%= link_to '詳細', admin_recipe_path(recipe.id), class: 'btn btn-secondary mt-md-3' %>
                 </div>
             </div>
         <% end %>

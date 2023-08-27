@@ -1,6 +1,6 @@
 class Public::RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search_category, :search_tag]
-
+  
   def index
     @recipes = Recipe.page(params[:page]).order('id DESC').per(15)
   end
@@ -9,7 +9,6 @@ class Public::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe_tags = @recipe.tags
     @comments = @recipe.comments
-    @category = Category.find_by(params[:id])
     if user_signed_in?
       @comment = current_user.comments.new
     end
@@ -40,10 +39,12 @@ class Public::RecipesController < ApplicationController
   end
   
   def update
-    recipe = Recipe.find(params[:id])
-    if recipe.update(recipe_params)
+    @recipe = Recipe.find(params[:id])
+    tag_list = params[:recipe][:tag_name].split(nil)
+    if @recipe.update(recipe_params)
+      @recipe.save_tag(tag_list)
       flash[:success] = "投稿内容を変更しました"
-      redirect_to recipe_path(recipe.id)
+      redirect_to recipe_path(@recipe.id)
     else 
       render :edit
     end

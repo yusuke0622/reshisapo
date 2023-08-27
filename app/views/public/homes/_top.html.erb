@@ -5,9 +5,9 @@
     <% @recipes.each do |recipe| %>
         <div class="col-md-5">
             <% if recipe.recipe_image.attached? %> 
-                <%= image_tag recipe.recipe_image.variant(resize: "400x400") %>
+                <%= image_tag recipe.recipe_image, :size => "280x220" %>
             <% else %>
-                <%= image_tag 'no_image.jpg', :size => "100x100" %>
+                <%= image_tag 'no_recipe_image.png', :size => "280x220" %>
             <% end %>
             <p class="text-center"><%= recipe.recipe_name %></p>
         </div>

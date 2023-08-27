@@ -5,7 +5,7 @@
     <span>
         <%= link_to user_path(visitor) do %>
             <% if visitor.user_icon.present? %>
-            <%= image_tag visitor.user_icon.variant(resize: "30x35"), class: 'rounded-circle', style: "object-fit: cover;" %>
+            <%= image_tag visitor.user_icon, :size => "30x30", class: 'rounded-circle', style: "object-fit: cover;" %>
             <% else %>
             <%= image_tag 'no_image.jpg', :size => "30x30", class: 'rounded-circle' %>
             <% end %>

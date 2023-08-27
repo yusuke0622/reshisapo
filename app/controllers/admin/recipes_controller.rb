@@ -8,7 +8,6 @@ class Admin::RecipesController < ApplicationController
     @recipe_tags = @recipe.tags
     @comments = @recipe.comments
     @user = User.find_by(params[:id])
-    @category = Category.find_by(params[:category_id])
   end
   
   def destroy

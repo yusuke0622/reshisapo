@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes.all
+    @recipes = @user.recipes.page(params[:page]).order('id DESC').per(15)
     @category = Category.find_by(params[:id])
   end
 

@@ -35,7 +35,7 @@ class Public::RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    @tag_list = @recipe.tags.pluck(:tag_name).join(nil)
+    @tag_list = @recipe.tags.pluck(:tag_name).join(' ')
   end
   
   def update

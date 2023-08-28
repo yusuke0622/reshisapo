@@ -21,18 +21,18 @@
         <div class="row col-md-12 mt-3">
             <div class="col-md-7 d-flex justify-content-center"><!--レシピ画像--->
                 <% if @recipe.recipe_image.attached? %> 
-                    <%= image_tag @recipe.recipe_image, :size => "300x300", style: "object-fit: cover;" %>
+                    <%= image_tag @recipe.recipe_image, :size => "420x380", style: "object-fit: cover;" %>
                 <% else %>
-                    <%= image_tag 'no_recipe_image.png', :size => "300x300", style: "object-fit: cover;" %>
+                    <%= image_tag 'no_recipe_image.png', :size => "420x380", style: "object-fit: cover;" %>
                 <% end %>
             </div>
             <div class="col-md-5 d-flex flex-column align-items-start justify-content-center">
                 <% if user_signed_in?  %>
-                    <%= render partial: 'show_user_signed_in' %>
+                    <%= render partial: 'show_link' %>
                 <% elsif admin_signed_in? %>
-                    <%= render partial: 'public/recipes/show_user_signed_in' %>
+                    <%= render partial: 'public/recipes/show_link' %>
                 <% else %>
-                    <%= render partial: 'public/recipes/show_user_not_signed' %>
+                    <%= render partial: 'show_link' %>
                 <% end %>
             </div>    
         </div>
@@ -91,8 +91,6 @@
                 <% end %>
                 <%= render partial: 'show_comment' %>
             </div>
-        <% else %>
-             <%= render partial: 'public/recipes/show_comment' %>
         <% end %>
         
         <% if user_signed_in? %>    

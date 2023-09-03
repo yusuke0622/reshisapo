@@ -19,11 +19,10 @@
                         </p>
                 </div>
             </div>
-            
             <div class="col-md-4 mr-md-auto">
                 <h2 class="font-weight-bold mb-4">新着投稿</h2>
             </div>
-            <div class="col-md-12 my-5 mx-auto">
+            <div class="col-md-12 my-5 mx-auto"><!--レシピ一覧--->
                 <div class="d-flex flex-wrap">
                     <%= render partial: "public/recipes/recipes", collection: @recipes, as: :recipe %>
                 </div>
@@ -31,7 +30,6 @@
                     <%= link_to 'レシピをもっと見る', recipes_path %>
                 </div>
             </div>
-            
             <div style="margin-top: 100px;" class="col-md-12 row">
                 <div class="col-md-6 pull-left">
                     <div class="mr-md-auto">

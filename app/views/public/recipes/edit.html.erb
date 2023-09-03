@@ -1,10 +1,10 @@
 <div class="container mt-5">
-        <div class="col-md-10 mx-auto">
-            <div class="text-center">
-                <h1>レシピ投稿編集</h1>
-            </div>
-            <%= form_with model: @recipe, url: recipe_path(@recipe.id), local: true, method: :PATCH do |f| %>
-                <%= render partial: 'recipe_form', locals: { f: f } %>
-            <% end %>
+    <div class="col-md-10 mx-auto">
+        <div class="text-center">
+            <h1>レシピ投稿編集</h1>
         </div>
+        <%= form_with model: @recipe, url: recipe_path(@recipe.id), local: true, method: :PATCH do |f| %>
+            <%= render partial: 'recipe_form', locals: { f: f } %>
+        <% end %>
+    </div>
 </div>

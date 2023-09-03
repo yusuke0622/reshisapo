@@ -1,0 +1,27 @@
+<div class="container">
+    <div style="height: 200px;" class="d-flex flex-column justify-content-center align-items-center">
+        <% if user_signed_in?%>
+            <p>
+                <%= link_to 'トップ', root_path, class: 'mr-4 text-dark' %>
+                <%= link_to "レシピ一覧", recipes_path, class: 'mr-4 text-dark' %>
+                <%= link_to 'レシピ投稿', new_recipe_path, class: 'mr-4 text-dark' %>
+                <%= link_to 'カテゴリーについて', category_detail_path, class: 'mr-4 text-dark' %>
+                <%= link_to 'ログアウト', destroy_user_session_path, class: 'text-dark', method: :delete %>
+            </p>
+        <% elsif admin_signed_in? %>
+            <p>
+                <%= link_to 'トップ', admin_path, class: 'mr-4 text-dark' %>
+                <%= link_to "レシピ一覧", admin_recipes_path, class: 'mr-4 text-dark' %>
+                <%= link_to 'カテゴリーについて', category_detail_path, class: 'mr-4 text-dark' %>
+                <%= link_to 'ログアウト', destroy_admin_session_path, class: 'text-dark', method: :delete %>
+            </p>
+        <% else %>
+            <p>
+                <%= link_to 'トップ', admin_path, class: 'mr-4 text-dark' %>
+                <%= link_to "レシピ一覧", admin_recipes_path, class: 'mr-4 text-dark' %>
+                <%= link_to 'カテゴリーについて', category_detail_path, class: 'mr-4 text-dark' %>
+            </p>
+        <% end %>
+        <p>Copyright © 2023 Reshisapo All Rights Reserved.</p>
+     </div>
+</div>

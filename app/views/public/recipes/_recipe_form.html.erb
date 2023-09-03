@@ -1,0 +1,66 @@
+
+ <div class="row form-group mt-5">
+        <%= f.label :recipe_name, 'レシピ名', class: 'col-md-3 font-weight-bold' %>
+        <%= f.text_field :recipe_name, class: 'col-md-6' %>
+    </div>
+    <div class="row form-group">
+        <%= f.label :category_name, 'カテゴリー選択', class: 'col-md-3 font-weight-bold' %>
+        <%= f.collection_select :category_id, Category.all, :id, :category_name, { prompt: '選択してください' }, class: 'col-md-4' %>
+        <%= link_to 'カテゴリー詳しく', category_detail_path, class: 'col-md-3' %>
+    </div> 
+    <div class="row form-group">
+        <% if @recipe.new_record? %>
+            <%= f.label :tag_name, 'タグ', class: 'col-md-3 font-weight-bold' %>
+            <%= f.text_field :tag_ids, id: 'tag_ids', class: 'col-md-4' %>
+        <% else %>
+            <%= f.label :tag_name, 'タグ', class: 'col-md-3 font-weight-bold' %>
+            <%= f.text_field :tag_name, value: @tag_list, class: 'col-md-4' %>
+        <% end %>
+       <span class="col-md-5">半角スペースを入力することで複数のタグを付けることができます。<br>
+           例：高血圧 糖尿病 糖質
+       </span>
+    </div>
+    <div class="row form-group">
+        <%= f.label :recipe_image, '写真', class: "col-md-3 font-weight-bold" %>
+        <%= f.file_field :recipe_image %>
+    </div>
+    <div class="row form-group">
+        <%= f.label :introduction, '紹介文', class: 'col-md-3 font-weight-bold' %>
+        <%= f.text_area :introduction, placeholder: "どんなレシピか教えてください", rows: 5, class: 'col-md-8' %>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-3">
+        <%= f.label :ingredient, '材料・調味料', class: 'font-weight-bold' %><br>
+        <%= f.number_field :serving, class: 'col-md-5'%>人分
+        </div>
+        <div class="col-md-9 mt-1" id="ingredients">
+            <%= f.fields_for :ingredients do |ingredient| %>
+                <%= render "ingredient_fields", f: ingredient %>
+            <% end %>
+            <div class="links d-flex justify-content-end mt-3">
+                <%= link_to_add_association '追加', f, :ingredients,  class: 'btn btn-outline-secondary col-md-2' %>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-3">
+            <%= f.label :step, '作り方', class: 'font-weight-bold' %><br>
+        </div>
+        <div class="col-md-9" id="steps">
+                <%= f.fields_for :steps do |step| %>
+                    <%= render "step_fields", f: step %>
+                <% end %>
+            <div class="links d-flex justify-content-end mt-3">
+                <%= link_to_add_association '追加', f, :steps,  class: 'btn btn-outline-secondary col-md-2' %>
+            </div>
+        </div>
+    </div>
+           
+    <div class="row d-flex justify-content-center mt-5">
+        <% if @recipe.new_record? %>
+           <%= f.submit '投稿', class: 'btn btn-primary col-md-3' %>
+        <% else %>
+           <%= f.submit "更新", class: 'btn btn-success col-md-3' %>
+           <%= link_to '削除', recipe_path(@recipe), class: 'btn btn-danger col-md-3 ml-3', method: :delete %>
+        <% end %>
+    </div>

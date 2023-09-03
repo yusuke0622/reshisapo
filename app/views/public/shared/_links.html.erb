@@ -1,0 +1,17 @@
+
+<%- if controller_name != 'sessions' %>
+  <div class="mt-4 d-flex justify-content-end">
+    会員登録済みの方はこちらから
+    <%= link_to "ログイン", new_session_path(resource_name) %><br />
+  </div>
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <div class="mt-4 d-flex justify-content-end">
+    会員登録がお済みでない方はこちらから
+    <%= link_to "新規登録", new_registration_path(resource_name) %><br />
+  </div>
+<% end %>
+
+
+

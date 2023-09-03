@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="col-md-11 mx-auto">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <% if @user.user_icon.present? %>
+                    <%= image_tag @user.user_icon, :size => "200x200", class: 'rounded-circle', style: "object-fit: cover;" %>
+                <% else %>
+                    <%= image_tag 'no_image.jpg', :size => "200x200", class: 'rounded-circle'  %>
+                <% end %>
+                <h2 class="font-weight-bold"><%= @user.name %></h2>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <h2>投稿一覧</h2>
+        </div> 
+        <% @recipes.each do |recipe| %>
+            <div class="row mt-5">
+                <div class="col-md-7 text-center">
+                    <% if recipe.recipe_image.attached? %> 
+                        <%= image_tag recipe.recipe_image, :size => "350x280", style: "object-fit: cover;" %>
+                    <% else %>
+                        <%= image_tag 'no_recipe_image.png', :size => "300x300", style: "object-fit: cover;" %>
+                    <% end %>
+                </div>
+                <div class="col-md-4 d-flex flex-column justify-content-center align-items-center">
+                    <%= link_to admin_recipe_path(recipe.id) do %>
+                        <h4 class="font-weight-bold text-dark"><%= recipe.recipe_name %>
+                        <span>♡</span><%= recipe.favorites.count %> 
+                        </h4>
+                    <% end %>
+                    <%= link_to '詳細', admin_recipe_path(recipe.id), class: 'btn btn-secondary mt-md-3' %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

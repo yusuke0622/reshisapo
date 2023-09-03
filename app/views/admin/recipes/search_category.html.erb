@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="col-md-11 mx-auto">
+        <div class="mt-5">
+            <h2 class="font-weight-bold text-center">
+                <%= @category.category_name %>に関する投稿
+            </h2>
+        </div>
+        <div class="d-flex flex-wrap mt-5">
+            <%= render partial: "public/recipes/recipes", collection: @category_recipes, as: :recipe %>
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <%= paginate @category_recipes %>
+        </div>
+    </div>
+</div>

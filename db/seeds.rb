@@ -14,3 +14,5 @@ Tag.create([
     { tag_name: '高血圧' },
     { tag_name: '糖質'}
     ])
+    
+    

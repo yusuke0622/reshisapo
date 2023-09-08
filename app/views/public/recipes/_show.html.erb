@@ -75,7 +75,7 @@
     </div>
 </div>
         
-<% if user_signed_in?%><!---コメント--->
+<% if user_signed_in? %><!---コメント--->
     <div class="row col-md-12 d-flex flex-column mt-5">
         <%= form_with(model:[@recipe, @comment], method: :post) do |f| %>
             <div class="mr-auto">
@@ -87,10 +87,13 @@
                 <%= f.submit 'コメントする', class: 'btn btn-outline-secondary' %>
             </div>
         <% end %>
-        <%= render partial: 'show_comment' %><!----コメント一覧---->
-<% else admin_signed_in? %>
-        <%= render partial: 'public/recipes/show_comment' %><!---管理者用コメント一覧---->
     </div>
+    <div class="row col-md-12 d-flex">
+        <%= render partial: 'show_comment' %><!----コメント一覧---->
+    </div>
+<% elsif admin_signed_in? %>
+        <%= render partial: 'public/recipes/show_comment' %><!---管理者用コメント一覧---->
+    
 <% end %>
 
 

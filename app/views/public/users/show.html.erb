@@ -8,13 +8,15 @@
                     <%= image_tag 'no_image.jpg', :size => "200x200", class: 'rounded-circle' %>
                 <% end %>
                 <h3 class="text-center"><%= @user.name %></h3>
-                <div class="col-md-8 d-flex flex-column align-items-center justify-content-start">
-                    <% if @user.id == current_user.id %>
-                            <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-outline-secondary mt-2' %>
-                    <% end %>
-                    <%= link_to 'お気に入りレシピ', favorites_user_path(@user), class: 'btn btn-warning my-3' %>
-                    <%= link_to 'レシピ投稿', new_recipe_path, class: 'btn btn-outline-success' %>
-                </div>
+                <% if user_signed_in? %>
+                    <div class="col-md-8 d-flex flex-column align-items-center justify-content-start">
+                        <% if @user.id == current_user.id %>
+                                <%= link_to 'プロフィールを編集する', users_information_edit_path, class: 'btn btn-outline-secondary mt-2' %>
+                        <% end %>
+                        <%= link_to 'お気に入りレシピ', favorites_user_path(@user), class: 'btn btn-warning my-3' %>
+                        <%= link_to 'レシピ投稿', new_recipe_path, class: 'btn btn-outline-success' %>
+                    </div>
+                <% end %>
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">

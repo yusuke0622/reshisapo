@@ -15,7 +15,7 @@ class Admin::RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     if @recipe.destroy
-      flash[:danger] = "投稿を削除しました"
+      flash[:error] = "投稿を削除しました"
       redirect_to admin_recipes_path
     end
   end

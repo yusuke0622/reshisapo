@@ -25,6 +25,7 @@ class Public::RecipesController < ApplicationController
     tag_list = params[:recipe][:tag_ids].split(nil)
     if @recipe.save
       @recipe.save_tag(tag_list)
+      flash[:notice] = "レシピが投稿されました"
       redirect_to recipe_path(@recipe.id)
     else
       render :new
@@ -43,7 +44,7 @@ class Public::RecipesController < ApplicationController
     tag_list = params[:recipe][:tag_name].split(nil)
     if @recipe.update(recipe_params)
       @recipe.save_tag(tag_list)
-      flash[:success] = "投稿内容を変更しました"
+      flash[:notice] = "投稿内容を変更しました"
       redirect_to recipe_path(@recipe.id)
     else 
       render :edit
@@ -53,7 +54,7 @@ class Public::RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     if @recipe.destroy
-      flash[:success] = "投稿を削除しました"
+      flash[:error] = "投稿を削除しました"
       redirect_to user_path(current_user)
     end
   end

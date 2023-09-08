@@ -5,7 +5,7 @@ class Admin::CommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @comment = Comment.find_by(recipe_id: @recipe.id)
      if @comment.destroy
-            flash[:danger] = "コメントを削除しました"
+            flash[:error] = "コメントを削除しました"
             redirect_to admin_recipe_path(params[:recipe_id])
      end
   end

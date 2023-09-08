@@ -20,10 +20,10 @@ class Public::CommentsController < ApplicationController
         @recipe = Recipe.find(params[:recipe_id])
         @comment = Comment.find(params[:id])
         if @comment.update(comment_params)
-            flash[:success] = "コメントの内容を更新しました"
+            flash[:notice] = "コメントの内容を更新しました"
             redirect_to @recipe
         else
-            flash[:danger] = "更新できませんでした"
+            flash[:error] = "更新できませんでした"
             render :edit
         end
     end
@@ -32,7 +32,7 @@ class Public::CommentsController < ApplicationController
         @recipe = Recipe.find(params[:recipe_id])
         @comment = Comment.find_by(recipe_id: @recipe.id)
         if @comment.destroy
-            flash[:danger] = "コメントを削除しました"
+            flash[:error] = "コメントを削除しました"
             redirect_to recipe_path(params[:recipe_id])
         end
     end

@@ -24,7 +24,7 @@ class Public::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email])
     return if !@user
     if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
-      flash[:notice] = "登録が必要です"
+      flash[:alert] = "登録が必要です"
       redirect_to new_user_registration_path
     else 
     end

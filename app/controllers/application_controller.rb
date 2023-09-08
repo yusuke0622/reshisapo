@@ -11,11 +11,20 @@ class ApplicationController < ActionController::Base
         user_path(current_user.id)
     end
     
-    def after_sign_out_path_for(resoutce)
+    def after_sign_out_path_for(resource)
         new_user_session_path
     end
     
     #フラッシュメッセージkey追加
-    add_flash_types :success, :info, :warning, :dangeer
+    def bootstrap_alert(key)
+        case key
+        when "alert"
+          "warning"
+        when "notice"
+          "success"
+        when "error"
+          "danger"
+        end
+    end
     
 end

@@ -22,7 +22,7 @@
         <% if @recipe.recipe_image.attached? %> 
             <%= image_tag @recipe.recipe_image, :size => "400x380", style: "object-fit: cover;" %>
         <% else %>
-            <%= image_tag 'no_recipe_image.png', :size => "420x380", style: "object-fit: cover;" %>
+            <%= image_tag 'no_recipe_image.png', :size => "400x380", style: "object-fit: cover;" %>
         <% end %>
     </div>
     <div class="col-md-6 d-flex flex-column align-items-start justify-content-center"><!--ユーザー情報、レシピのカテゴリー、タグ-->

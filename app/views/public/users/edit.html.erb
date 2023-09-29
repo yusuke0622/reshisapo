@@ -3,8 +3,7 @@
         <div class="col-md-12 mt-5">
            <h2 class="font-weight-bold text-center">プロフィール編集</h2>
         </div>
-        
-         <%= form_with(model: @user, url: users_information_path, method: :PATCH) do |f| %>
+        <%= form_with(model: @user, url: users_information_path, method: :PATCH) do |f| %>
             <div class="col-md-12">
                 <div class="d-flex  justify-content-center my-4">
                     <% if @user.user_icon.present? %>
@@ -19,25 +18,17 @@
                 </div>
                 <div class="row form-group d-flex justify-content-center">
                     <%= f.label :name, 'ユーザーネーム', class: 'col-md-2 col-sm-5' %>
-                    <%= f.text_field :name, class: 'col-md-3 col-sm-4' %>
+                    <%= f.text_field :name, class: 'col-md-3 col-sm-4 text-form' %>
                 </div>
-               <div class="row form-group d-flex justify-content-center">
+                <div class="row form-group d-flex justify-content-center">
                     <%=f.label :email, 'メールアドレス', class: 'col-md-2 col-sm-5' %>
-                    <%= f.email_field :email, class: 'col-md-3 col-sm-4' %>
+                    <%= f.email_field :email, class: 'col-md-3 col-sm-4 text-form' %>
                 </div>
                 <div class="row d-flex justify-content-center mt-4">
-                        <%= f.submit "変更" , class: 'btn btn-success col-md-2' %>
-                        <%= link_to '退会', users_quit_path, class: 'btn btn-danger col-md-2 ml-md-3' %>
+                    <%= f.submit "変更" , class: 'btn btn-success col-md-2' %>
+                    <%= link_to '退会', users_quit_path, class: 'btn btn-danger col-md-2 ml-md-3' %>
                 </div>
             </div>
         <% end %>
-        <div>
-           
-              
-                
-            
-        </div>
-    
     </div>
-    
 </div>

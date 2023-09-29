@@ -2,6 +2,14 @@
 body {
     background-color: #FFFFF0;
 }
+
+.text-form {
+    background-color: #FFFFF0;
+}
+
+select {
+    background-color: #FFFFF0;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

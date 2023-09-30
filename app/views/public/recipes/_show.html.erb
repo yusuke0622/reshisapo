@@ -5,7 +5,7 @@
             <small class="font-weight-light text-sm">♡<%= @recipe.favorites.count %></small>
         </h2>
     </div>
-    <div class="ml-auto">
+    <div class="ml-auto"><!----お気に入り----->
         <% if user_signed_in? %>
             <% if @recipe.user_id != current_user.id %>
                 <% if @recipe.favorited?(current_user) %>
@@ -74,30 +74,30 @@
         </div>
     </div>
 </div>
-        
-<% if user_signed_in? %><!---コメント--->
+<!---コメント--->
+<% if user_signed_in? %>
     <div class="row col-md-12 d-flex flex-column mt-5">
         <%= form_with(model:[@recipe, @comment], method: :post) do |f| %>
             <div class="mr-auto">
                 <h2>コメント</h2>
             </div>
-            <div class="form-group col-md-9 mx-auto text-center mt-4">
-                <%= f.text_area :content, rows: 4, class: 'col-md-12 text-form' %>
+            <div class="col-md-6 offset-md-2 mt-3">
+                <%= f.text_area :content, rows: 3, class: 'col-12 text-form' %>
                 <%= f.hidden_field :recipe_id, value: @recipe.id %><br>
-                <%= f.submit 'コメントする', class: 'btn btn-outline-secondary' %>
+                <div class="text-right">
+                <%= f.submit 'コメントする', class: 'btn btn-outline-secondary col-md-4' %>
+                </div>
             </div>
         <% end %>
     </div>
-    <div class="row col-md-12 d-flex">
-        <%= render partial: 'show_comment' %><!----コメント一覧---->
+    <div class="row col-md-12 d-flex"><!----コメント一覧---->
+        <%= render partial: 'show_comment' %>
     </div>
-<% elsif admin_signed_in? %>
-        <%= render partial: 'public/recipes/show_comment' %><!---管理者用コメント一覧---->
-    
+<% elsif admin_signed_in? %><!---管理者用コメント一覧---->
+        <%= render partial: 'public/recipes/show_comment' %>
 <% end %>
-
-
-<% if user_signed_in? %>    
+<!--レシピ編集・削除---->
+<% if user_signed_in? %>
     <% if @recipe.user_id == current_user.id %>
         <div style="margin-top: 100px;" class="row d-flex justify-content-center">
             <%= link_to '編集', edit_recipe_path(@recipe.id), class: 'btn btn-outline-success mr-4 col-md-2' %>

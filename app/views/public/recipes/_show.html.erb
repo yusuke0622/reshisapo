@@ -90,7 +90,7 @@
             </div>
         <% end %>
     </div>
-    <div class="row col-md-12 d-flex"><!----コメント一覧---->
+    <div class="row col-md-12 d-flex flex-column"><!----コメント一覧---->
         <%= render partial: 'show_comment' %>
     </div>
 <% elsif admin_signed_in? %><!---管理者用コメント一覧---->

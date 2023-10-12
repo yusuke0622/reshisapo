@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   #カテゴリー
   namespace :admin do
     resources :users, only: [:show, :index, :destroy]
+    patch 'withdraw/:id' => 'users#withdraw', as: "withdraw"
     resources :recipes, only: [:show, :index, :destroy] do
       resources :comments, only: [:destroy]
     end

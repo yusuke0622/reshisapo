@@ -1,5 +1,7 @@
 class Public::CommentsController < ApplicationController
    before_action :authenticate_user!
+   before_action :comment_edit_permission, only: [:edit, :update, :destroy]
+    
     def create
         @comment = current_user.comments.new(comment_params)
         @recipe = @comment.recipe
@@ -36,9 +38,21 @@ class Public::CommentsController < ApplicationController
             redirect_to recipe_path(params[:recipe_id])
         end
     end
+    
     private 
+    
     def comment_params
         params.require(:comment).permit(:content, :recipe_id).merge(recipe_id: params[:recipe_id])
+    end
+    
+        
+    def comment_edit_permission
+        @recipe = Recipe.find(params[:recipe_id])
+        @comment = Comment.find(params[:id])
+        unless (@comment.user_id == current_user.id) || (@recipe.user_id == current_user.id)
+            flash[:error] = "権限がありません"
+            redirect_to recipes_path
+        end
     end
     
     

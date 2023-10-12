@@ -1,5 +1,6 @@
 class Public::RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search_category, :search_tag]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def index
     @recipes = Recipe.page(params[:page]).order('id DESC').per(15)
@@ -71,9 +72,19 @@ class Public::RecipesController < ApplicationController
   end
   
   private
+    
     def recipe_params
       params.require(:recipe).permit(:user_id, :recipe_name, :introduction, :serving, :category_id, :recipe_image, :step_image, tag_ids: [],
       ingredients_attributes:[:id, :ingredient_name, :quantity, :_destroy],
       steps_attributes:[:id, :explanation, :step_image, :number, :_destroy])
     end
+    
+    #他ユーザーからのアクセス制限
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to recipes_path
+      end
+    end
+    
 end

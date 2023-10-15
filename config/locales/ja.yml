@@ -35,3 +35,26 @@ ja:
             x_years:
                 one: 1秒
                 other: "%{count}秒"
+    activerecord:
+        errors:
+            messages:
+                record_invalid: "バリデーションに失敗しました: %{errors}"
+                restrict_dependent_destroy:
+                    has_one: "%{record}が存在しているので削除できません"
+                    has_many: "%{record}が存在しているので削除できません"
+        models:
+            recipe: 'レシピ'
+            comment: 'コメント'
+            category: 'カテゴリー'
+        attributes:
+            recipe:
+                recipe_name: 'レシピ名'
+                introduction: 'レシピ説明'
+                serving: '何人分か'
+                category: 'カテゴリー名'
+                ingredients: '材料・調味料'
+                steps: '作り方'
+            category:
+                category_name: 'カテゴリー名'
+            comment:
+                content: 'コメント'

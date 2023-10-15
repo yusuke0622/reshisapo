@@ -11,7 +11,9 @@ select {
     background-color: #FFFFF0;
 }
 
-
+.field_with_errors {
+  display: contents;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

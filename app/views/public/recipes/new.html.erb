@@ -2,6 +2,7 @@
     <div class="col-md-10 mx-auto">
         <h1 class="text-center">レシピ作成</h1>
         <%= form_with model: @recipe, local: true do |f| %>
+           <%= render 'shared/error_messages', object: f.object %>
            <%= render partial: 'recipe_form', locals: { f: f } %>
         <% end %>
     </div>

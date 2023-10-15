@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
-    has_many :recipes, dependent: :destroy    
+    has_many :recipes, dependent: :destroy
+    
+    validates :category_name, presence: true
     
  def self.looks(search, word)
    if search == "perfect_match"

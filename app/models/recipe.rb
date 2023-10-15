@@ -15,7 +15,11 @@ class Recipe < ApplicationRecord
     has_one_attached :recipe_image
     has_one_attached :step_image
     
-    
+    validates :recipe_name, presence: true, length: { maximum: 20 }
+    validates :introduction, presence: true, length: { maximum: 50 }
+    validates :serving, presence: true
+    validates :ingredients, presence: true
+    validates :steps, presence: true
     
     #タグ
     def save_tag(sent_tags)

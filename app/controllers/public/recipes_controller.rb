@@ -82,7 +82,8 @@ class Public::RecipesController < ApplicationController
     #他ユーザーからのアクセス制限
     def is_matching_login_user
       user = User.find(params[:id])
-      unless user.id == current_user.id
+      unless Recipe.find(params[:id]).user.id.to_i == current_user.id
+        flash[:error] = "権限がありません"
         redirect_to recipes_path
       end
     end

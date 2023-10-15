@@ -9,6 +9,7 @@ class Public::CommentsController < ApplicationController
             @recipe.create_notification_comment!(current_user, @comment.id)
             redirect_back(fallback_location: root_path)
         else
+            flash[:error] = "１文字以上入力してください"
             redirect_back(fallback_location: root_path)
         end
     end

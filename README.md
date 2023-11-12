@@ -36,8 +36,8 @@
 - Nginx
 - puma 3.11
 - AWS　　
-　　　　-　VPC　　
-　　　　-　EC2　　
+  -　VPC　　
+  -　EC2
   -　RDS　　
 - Rspec
 

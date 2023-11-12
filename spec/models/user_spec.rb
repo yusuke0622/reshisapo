@@ -25,7 +25,7 @@ describe 'ユーザー新規登録' do
         end
         context '新規登録がうまくいかないとき' do
             it "ユーザーネームが空だと登録できない" do
-                user.name = ''
+                user.name = ""
                 user.valid?
                 expect(user.errors.full_messages).to include("ユーザーネームを入力してください")
             end
@@ -57,12 +57,12 @@ describe 'ユーザー新規登録' do
             end
             it 'パスワードと確認用パスワードが間違っている場合、無効であること' do
                 user.password = 'password'
-                user.password_confirmation = 'pass'
+                user.password_confirmation = 'password'
                 user.valid?
                 expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
             end
         end
     end
 end
-    
+
     

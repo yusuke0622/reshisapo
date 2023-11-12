@@ -65,11 +65,11 @@ describe '投稿のテスト' do
         end
         context '表示の確認' do
             it '投稿されたものが表示されているか' do
-                expect(page).to have_content recipe.recip_name
+                expect(page).to have_content recipe.recipe_name
                 expect(page).to have_content recipe.introduction
                 expect(page).to have_content recipe.category
                 expect(page).to have_content recipe.serving
-                expect(page).to have_cintent recipe_with_tag.tag_name
+                expect(page).to have_content recipe_with_tag.tag_name
                 expect(page).to have_content recipe_with_ingredient.ingredient_name
                 expect(page).to have_content recipe_with_ingredient.quantity
                 expect(page).to have_content recipe_with_step.explanation
@@ -101,8 +101,8 @@ describe '投稿のテスト' do
         end
         context '表示の確認' do
             it '編集前の投稿内容がフォームに表示されている' do
-                expect(page).to have_field 'recipe[recipe_name]', with:  recipe.recip_name
-                expect(page).to have_field 'recipe[ntroduction]', with: recipe.introduction
+                expect(page).to have_field 'recipe[recipe_name]', with: recipe.recipe_name
+                expect(page).to have_field 'recipe[introduction]', with: recipe.introduction
                 expect(page).to have_field 'recipe[category]', with: recipe.category
                 expect(page).to have_field 'recipe[serving]', with: recipe.serving
                 expect(page).to have_field 'recipe_with_tag[tag_name]', with: recipe_with_tag.tag_name

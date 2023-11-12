@@ -33,12 +33,12 @@
 - Ruby 3.1.2
 - Ruby on Rails 6.1.7.4
 - SQLite3 1.4
-- puma 3.11
 - Nginx
+- puma 3.11
 - AWS
-  - VPC
-  - EC2
-  - RDS
+  -VPC
+  -EC2
+  -RDS
 - Rspec
 
 ## 実務機能リスト

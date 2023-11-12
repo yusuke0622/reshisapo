@@ -37,8 +37,8 @@
 - puma 3.11
 - AWS
   - VPC
-  -　EC2
-  -　RDS　　
+  - EC2
+  - RDS　　
 - Rspec
 
 ## 実務機能リスト

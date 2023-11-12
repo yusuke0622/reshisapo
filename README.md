@@ -35,8 +35,8 @@
 - SQLite3 1.4
 - Nginx
 - puma 3.11
-- AWS　　
-  -　VPC　　
+- AWS
+  - VPC
   -　EC2
   -　RDS　　
 - Rspec

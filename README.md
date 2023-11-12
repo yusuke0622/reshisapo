@@ -26,9 +26,7 @@
 
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用技術
@@ -37,7 +35,10 @@
 - SQLite3 1.4
 - puma 3.11
 - Nginx
-- AWS *VPC *EC2 *RDS
+- AWS
+  - VPC
+  - EC2
+  - RDS
 - Rspec
 
 ## 実務機能リスト

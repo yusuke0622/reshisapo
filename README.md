@@ -22,7 +22,10 @@
 - 自分が作った料理のレシピを投稿する時
 
 ## 設計書
-<...>
+- ER図：https://drive.google.com/file/d/1yfYOmKojSdWskhM56jQ0rwxGNUj56oIg/view?usp=sharing
+- 画面遷移図：https://drive.google.com/file/d/1fxguaNFJbCO4BTASFJSpBAGWTuX-5BOv/view?usp=sharing
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1GnkuMW-Rxrxn4I0Sw1iDL7ZNPe8fl3mAk6WbXTjx9EI/edit?usp=sharing
+- 詳細設計図：https://docs.google.com/spreadsheets/d/1xsw4SlDIvw9FE2Bi13g9iqIMNOLcCKrbPDMJDsgMGvw/edit?usp=sharing  
 
 ## 開発環境
 - OS：Linux(CentOS)

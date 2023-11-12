@@ -36,9 +36,9 @@
 - Nginx
 - puma 3.11
 - AWS
-  -VPC
-  -EC2
-  -RDS
+  -　VPC
+  -　EC2
+  -　RDS
 - Rspec
 
 ## 実務機能リスト

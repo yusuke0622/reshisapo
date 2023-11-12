@@ -31,7 +31,14 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
+## 使用技術
+- Ruby 3.1.2
+- Ruby on Rails 6.1.7.4
+- SQLite3 1.4
+- puma 3.11
+- Nginx
+- AWS *VPC *EC2 *RDS
+- Rspec
 
 ## 実務機能リスト
 https://docs.google.com/spreadsheets/d/1zbPpru5VfEllQ03QUnqHeDMC5h_J8tlnAoykMJCFvrU/edit?usp=sharing

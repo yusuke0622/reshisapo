@@ -7,13 +7,13 @@
         <% else %>
             <%= image_tag 'no_image.jpg', :size => "30x30", class: 'rounded-circle'%>
         <% end %>
-        <h4 class="text-dark ml-3 font-weight-normal"><%= @recipe.user.name %></h4>
+        <h3 class="text-dark ml-3 font-weight-normal"><%= @recipe.user.name %></h3>
     <% end %>
 <!--カテゴリー-->  
     <div class="mt-2"> 
-        <h5>カテゴリー</h5>
+        <h6>カテゴリー</h6>
         <%= link_to admin_category_recipes_path(category_id: @recipe.category.id) do %>
-           <h5 class="text-dark ml-3 border-bottom border-dark"><%= @recipe.category.category_name %></h5>
+           <h6 class="text-dark ml-3"><%= @recipe.category.category_name %></h6>
         <% end %>
     </div> 
     <!--タグ--->
@@ -35,13 +35,13 @@
         <% else %>
             <%= image_tag 'no_image.jpg', :size => "30x30", class: 'rounded-circle'%>
         <% end %>
-        <h4 class="text-dark ml-3 font-weight-normal"><%= @recipe.user.name %></h4>
+        <h3 class="text-dark ml-3 font-weight-normal"><%= @recipe.user.name %></h3>
     <% end %>
 <!--カテゴリー-->  
     <div class="d-flex mt-2"> 
-        <h5>カテゴリー</h5>
+        <h6>カテゴリー</h6>
         <%= link_to category_recipes_path(category_id: @recipe.category.id) do %>
-           <h5 class="text-dark ml-3 border-bottom border-dark"><%= @recipe.category.category_name %></h5>
+           <h6 class="text-dark ml-3"><%= @recipe.category.category_name %></h6>
         <% end %>
     </div> 
 <!--タグ--->
@@ -55,6 +55,7 @@
         <% end %>
     </div>
 <% end %>
-
-<h5 class="mt-2">説明</h5>
-<p><u><%= @recipe.introduction %></u></p>
+<div class="mt-1">
+    <h5>(紹介文)</h5>
+    <p><u><%= @recipe.introduction %></u></p>
+</div>

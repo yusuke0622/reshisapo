@@ -1,5 +1,5 @@
-<div class="mr-auto">
-    <h2>コメント一覧<small>(<%= @comments.count %>)</small></h2>
+<div class="col-md-6 mt-4">
+    <h2 class="text-left">コメント一覧<small>(<%= @comments.count %>)</small></h2>
 </div>
 <% if @comments.exists? %>
     <% if current_page?(controller: 'admin/recipes', action: 'show') %><!---管理者用ページ---->
@@ -49,5 +49,5 @@
         </div>
     <% end %>
 <% else %>
-    <P class="ml-md-2">コメントはありません</P>
+    <P class="ml-4">コメントはありません</P>
 <% end %>

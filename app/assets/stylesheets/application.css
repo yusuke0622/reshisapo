@@ -14,6 +14,28 @@ select {
 .field_with_errors {
   display: contents;
 }
+
+.col-xs-10{
+    width: 83.333333%;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: calc(2rem);
+}
+
+@media (max-width: 1200px) {
+    .title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 544px) {
+    .navbar-brand{
+        margin: 0 auto;
+    }
+    
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

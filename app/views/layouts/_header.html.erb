@@ -1,37 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-light border-bottom">
     <div class="container">
-            <% if admin_signed_in? %>
+        <% if admin_signed_in? %>
+                <%= link_to admin_path, class: 'navbar-brand' do %>
+                    <%= image_tag 'logo.jpg', :size => "80x80", class: 'd-inline-block align-text-center' %>
+                     レシサポ
+                <% end %>
                 <% if request.fullpath.include? "/admin" %>
-                    <%= link_to admin_path, class: 'navbar-brand' do %>
-                        <%= image_tag 'logo.jpg', :size => "80x80", class: 'd-inline-block align-text-center' %>
-                         レシサポ
-                    <% end %>
                     <div>
                         <%= render partial: 'layouts/admin_search' %>
                     </div>
-                <% else %>
-                    <%= link_to root_path, class: 'navbar-brand' do %>
-                        <%= image_tag 'logo.jpg', :size => "80x80", class: 'd-inline-block align-text-center' %>
-                         レシサポ
-                    <% end %>
-                    <div>
-                        <%= render partial: 'layouts/search' %>
-                    </div>
                 <% end %>
-             <% elsif user_signed_in? %>
-                <%= link_to root_path, class: 'navbar-brand' do %>
-                    <%= image_tag 'logo.jpg', :size => "80x80", class: 'd-inline-block align-text-center' %>
-                     レシサポ
-                <% end %>
+        <% elsif user_signed_in? %>
+            <%= link_to root_path, class: 'navbar-brand' do %>
+                <%= image_tag 'logo.jpg', :size => "80x80", class: 'd-inline-block align-text-center' %>
+                 レシサポ
+            <% end %>
                 <div>
                     <%= render partial: 'layouts/search' %>
                 </div>
-            <% else %>
-                <%= link_to root_path, class: 'navbar-brand' do %>
-                    <%= image_tag 'logo.jpg', :size => "80x80", class: 'd-inline-block align-text-center' %>
-                     レシサポ
-                <% end %>
+        <% else %>
+            <%= link_to root_path, class: 'navbar-brand' do %>
+                <%= image_tag 'logo.jpg', :size => "80x80", class: 'd-inline-block align-text-center' %>
+                 レシサ
             <% end %>
+        <% end %>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

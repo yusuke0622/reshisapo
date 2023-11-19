@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-  ##サインアップ・サインイン
   #管理者
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -11,14 +9,8 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
-  ##トップページ
   #管理者
   get 'admin' => 'admin/homes#top'
-  root to: 'homes#top'
-  
-  get 'category_detail' => 'public/homes#category_detail'
-  
-  ##管理者ページ
   namespace :admin do
     resources :users, only: [:show, :index, :destroy]
     patch 'withdraw/:id' => 'users#withdraw', as: "withdraw"
@@ -31,38 +23,38 @@ Rails.application.routes.draw do
     resources :tags do 
        get 'recipes' => 'recipes#search_tag'
     end
+    get "search" => "admin/searches#search"
   end
   
-  ##ユーザー用ページ
- 
+  #ユーザー
   scope module: :public do
-    get   'users/information/edit'  => 'users#edit'
-    patch 'users/information'       => 'users#update'
-    get   'users/quit'              => 'users#quit'
-    patch 'users/withdraw'          => 'users#withdraw'
+    root 'homes#top'
+    get 'category_detail' => 'homes#category_detail'
+    get 'users/information/edit' => 'users#edit'
+    patch 'users/information' => 'users#update'
+    get 'users/quit' => 'users#quit'
+    patch 'users/withdraw' => 'users#withdraw'
     resources :users, only: [:index, :show] do 
-      member do 
-        get :favorites　　
-      end
+      get :favorites, on: :member
     end
     resources :recipes do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]
     end
+    #タグ絞り込み
     resources :tags do
       get 'recipes' => 'recipes#search_tag'
     end
+    #カテゴリー絞り込み
     resources :categories do
       get 'recipes' => 'recipes#search_category'
     end
+    #通知
     resources :notifications, only: [:index]
     delete 'notifications/destroy_all' => 'notifications#destroy_all'
+    #検索
+    get "search" => "searches#search"
   end
-  
-  #検索
-  get "admin/search" => "admin/searches#search"
-  get "search" => "public/searches#search"
-  
-  
+ 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

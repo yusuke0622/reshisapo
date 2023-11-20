@@ -1,18 +1,18 @@
 <div class="container mt-5">
   <div class="row no-gutters">
-  <div class="col-md-8 mx-auto">
+  <div class="col-md-8 col-8 mx-auto">
     <h2 class="text-center mb-4">ログイン</h2>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
       <div class="row form-group d-flex justify-content-center">
         <%= f.label :email, 'メールアドレス', class: 'col-md-3 col-sm-6' %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'col-md-5 col-sm-4 text-form' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'col-md-5 col-sm-4 col-10 text-form' %>
       </div>
     
       <div class="row form-group d-flex justify-content-center">
         <%= f.label :password, 'パスワード', class: 'col-md-3 col-sm-6' %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: 'col-md-5 col-sm-4 text-form' %>
+        <%= f.password_field :password, autocomplete: "current-password", class: 'col-md-5 col-sm-4 col-10 text-form' %>
       </div>
     
       <% if devise_mapping.rememberable? %>
@@ -23,7 +23,7 @@
       <% end %>
     
       <div class="d-flex justify-content-center">
-        <%= f.submit "ログイン", class: 'btn btn-primary col-md-2 col-sm-2' %>
+        <%= f.submit "ログイン", class: 'btn btn-primary col-md-3 col-8' %>
       </div>
     <% end %>
     

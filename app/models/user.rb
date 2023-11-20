@@ -13,10 +13,12 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   
+
  def active_for_authentication?
     super && (is_deleted == false) 
  end
  
+ #写真
  def no_image
    unless user_icon.attached?
    file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -24,6 +26,7 @@ class User < ApplicationRecord
    end
  end
  
+ #検索
  def self.looks(search, word)
    if search == "perfect_match"
      @user = User.where("name LIKE?", "#{word}")

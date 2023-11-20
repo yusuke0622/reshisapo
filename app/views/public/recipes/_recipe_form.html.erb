@@ -28,17 +28,15 @@
     <%= f.text_area :introduction, placeholder: "どんなレシピか教えてください", rows: 5, class: 'col-md-8 text-form' %>
 </div>
 <div class="row form-group">
-    <div class="col-md-3">
-    <%= f.label :ingredient, '材料・調味料', class: 'font-weight-bold' %><br>
-    <%= f.number_field :serving, class: 'col-md-5 text-form' %>人分
-    </div>
-    <div class="col-md-9 mt-1" id="ingredients">
-        <%= f.fields_for :ingredients do |ingredient| %>
-            <%= render "ingredient_fields", f: ingredient %>
-        <% end %>
-        <div class="links d-flex justify-content-end mt-3">
-            <%= link_to_add_association '追加', f, :ingredients,  class: 'btn btn-outline-secondary col-md-2' %>
-        </div>
+    <%= f.label :ingredient, '材料・調味料', class: 'font-weight-bold col-md-3' %><br>
+    <%= f.number_field :serving, class: 'col-md-1 col-2 text-form' %>人分
+</div>
+<div class="mt-1" id="ingredients">
+    <%= f.fields_for :ingredients do |ingredient| %>
+        <%= render "ingredient_fields", f: ingredient %>
+    <% end %>
+    <div class="links d-flex justify-content-end mt-3">
+        <%= link_to_add_association '追加', f, :ingredients,  class: 'btn btn-outline-secondary col-md-2 col-4' %>
     </div>
 </div>
 <div class="row form-group">
@@ -50,16 +48,16 @@
                 <%= render "step_fields", f: step %>
             <% end %>
         <div class="links d-flex justify-content-end mt-3">
-            <%= link_to_add_association '追加', f, :steps,  class: 'btn btn-outline-secondary col-md-2' %>
+            <%= link_to_add_association '追加', f, :steps,  class: 'btn btn-outline-secondary col-md-3 col-4' %>
         </div>
     </div>
 </div>
        
 <div class="row d-flex justify-content-center mt-5">
     <% if @recipe.new_record? %>
-       <%= f.submit '投稿', class: 'btn btn-primary col-md-3' %>
+       <%= f.submit '投稿', class: 'btn btn-primary col-md-3 col-5' %>
     <% else %>
-       <%= f.submit "更新", class: 'btn btn-success col-md-3' %>
-       <%= link_to '削除', recipe_path(@recipe), class: 'btn btn-danger col-md-3 ml-3', method: :delete %>
+       <%= f.submit "更新", class: 'btn btn-success col-md-3 col-5' %>
+       <%= link_to '削除', recipe_path(@recipe), class: 'btn btn-danger col-md-3 col-5 ml-3', method: :delete %>
     <% end %>
 </div>
